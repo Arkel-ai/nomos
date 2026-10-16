@@ -1,0 +1,90 @@
+{
+  "set": "procedure_prudhomale",
+  "note": "Conseil de prud'hommes procedure, mostly R articles. These are short, formulaic and full of shared vocabulary ('bureau de conciliation et d'orientation' appears in a dozen of them), which makes the category a precision stress test rather than a recall one.",
+  "cases": [
+    {
+      "id": "pro-001",
+      "category": "procedure",
+      "query": "compétence du conseil de prud'hommes pour les litiges individuels du travail",
+      "gold": [{"article": "L1411-1", "grade": 2}, {"article": "L1411-4", "grade": 2}, {"article": "L1411-3", "grade": 1}],
+      "note": "L1411-4 carries the exclusivity rule that makes the competence useful in a pleading, so it is primary alongside the definition."
+    },
+    {
+      "id": "pro-002",
+      "category": "procedure",
+      "query": "comment saisir le conseil de prud'hommes forme de la demande",
+      "gold": [{"article": "R1452-1", "grade": 2}, {"article": "R1452-5", "grade": 1}],
+      "note": "R1452-1 is two sentences and includes the interruption-of-prescription rule a practitioner needs. Very short R articles are the weak point of the vector arm."
+    },
+    {
+      "id": "pro-003",
+      "category": "procedure",
+      "query": "référé prud'homal provision sur une créance non sérieusement contestable",
+      "gold": [{"article": "R1455-7", "grade": 2}, {"article": "R1455-5", "grade": 1}, {"article": "R1455-6", "grade": 1}],
+      "note": "Statutory-vocabulary twin of voc-010. Comparing the two shows how much of the score comes from the query's wording rather than from the retrieval design."
+    },
+    {
+      "id": "pro-004",
+      "category": "procedure",
+      "query": "délai pour faire appel d'un jugement du conseil de prud'hommes",
+      "gold": [{"article": "R1461-1", "grade": 2}, {"article": "R1455-11", "grade": 1}],
+      "note": "Near-miss by construction: R1461-1 (one month, jugement) and R1455-11 (fifteen days, référé) are both 'délai d'appel'. Returning only the second answers a different question."
+    },
+    {
+      "id": "pro-005",
+      "category": "procedure",
+      "query": "représentation obligatoire par avocat devant la chambre sociale de la cour d'appel",
+      "gold": [{"article": "R1461-2", "grade": 2}, {"article": "R1461-1", "grade": 1}],
+      "note": "Two adjacent articles that share a subject; the query's discriminating term ('chambre sociale') appears in exactly one of them."
+    },
+    {
+      "id": "pro-006",
+      "category": "procedure",
+      "query": "pouvoirs du bureau de conciliation et d'orientation en cas d'échec de la conciliation",
+      "gold": [{"article": "L1454-1-1", "grade": 2}, {"article": "L1454-1", "grade": 1}, {"article": "L1454-1-2", "grade": 1}, {"article": "R1454-1", "grade": 1}],
+      "note": "Fifteen articles in this corpus contain the phrase 'bureau de conciliation et d'orientation'. The discriminating term is 'échec de la conciliation', which appears in two. Pure precision@5 case."
+    },
+    {
+      "id": "pro-007",
+      "category": "procedure",
+      "query": "que se passe-t-il si le défendeur ne se présente pas devant le bureau de conciliation",
+      "gold": [{"article": "L1454-1-3", "grade": 2}, {"article": "R1454-2", "grade": 1}],
+      "note": "The Code says 'ne comparaît pas'; the query says 'ne se présente pas'. A one-word vocabulary hop inside an otherwise dense lexical field — the case most likely to be won by the vector arm alone."
+    },
+    {
+      "id": "pro-008",
+      "category": "procedure",
+      "query": "audience de départage devant le juge départiteur en cas de partage des voix",
+      "gold": [{"article": "L1454-2", "grade": 2}, {"article": "L1454-4", "grade": 1}, {"article": "L1454-3", "grade": 1}],
+      "note": "The word 'départiteur' appears in only two articles, so the lexical arm should win outright. Included as the counterweight to pro-007."
+    },
+    {
+      "id": "pro-009",
+      "category": "procedure",
+      "query": "qui peut assister ou représenter un salarié devant le conseil de prud'hommes",
+      "gold": [{"article": "L1453-1A", "grade": 2}, {"article": "L1453-4", "grade": 1}, {"article": "L1453-2", "grade": 1}],
+      "note": "L1453-1A has an unusual article number (letter suffix, no hyphen) that also exercises the citation-label parsing in the harness, not only retrieval."
+    },
+    {
+      "id": "pro-010",
+      "category": "procedure",
+      "query": "requalification d'une convention de stage en contrat de travail devant le bureau de jugement",
+      "gold": [{"article": "L1454-5", "grade": 2}],
+      "note": "Single gold, one article, one sentence, in a chapter about something else. If a strategy cannot isolate it, it is returning the section rather than the rule."
+    },
+    {
+      "id": "pro-011",
+      "category": "procedure",
+      "query": "prise d'acte de la rupture par le salarié saisine directe du bureau de jugement",
+      "gold": [{"article": "L1451-1", "grade": 2}, {"article": "L1235-3-2", "grade": 1}],
+      "note": "'Prise d'acte' is jurisprudential vocabulary the Code never uses — it says 'demande de qualification de la rupture ... à l'initiative du salarié'. A vocabulary gap hiding inside a procedural query."
+    },
+    {
+      "id": "pro-012",
+      "category": "procedure",
+      "query": "exécution provisoire et titre exécutoire du procès-verbal de conciliation",
+      "gold": [{"article": "R1454-11", "grade": 2}, {"article": "R1454-10", "grade": 1}],
+      "note": "Very short R articles again, and 'titre exécutoire' appears exactly once in the corpus. Expected to be an easy lexical win and a hard vector one."
+    }
+  ]
+}

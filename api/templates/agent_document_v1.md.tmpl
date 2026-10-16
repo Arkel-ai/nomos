@@ -1,0 +1,62 @@
+{{/*
+Agent-authored document — template version agent_document_v1.
+
+Rendered ONLY from a verified revision (services/render.go,
+RenderVerifiedDocument): a stored, immutable document revision whose
+server-created verification matches its content hash and allows download.
+Every value below was escaped in Go before it reached this template; .Table is
+a pipe table already built from escaped cells.
+
+Order: draft stamp, scope/coverage notices, title, the blocks (with their
+inline « À vérifier » warnings), the sources the document cites, and the
+verification appendix.
+*/ -}}
+::: {custom-style="Mention"}
+{{ .DraftNotice }}
+:::
+
+{{ range .Notices -}}
+::: {custom-style="Mention"}
+{{ . }}
+:::
+
+{{ end -}}
+::: {custom-style="Titre1"}
+{{ .Title }}
+:::
+
+{{ range .Sections -}}
+{{ if .Table -}}
+{{ .Table }}
+{{ else -}}
+::: {custom-style="{{ .Style }}"}
+{{ .Text }}
+:::
+
+{{ end -}}
+{{ end -}}
+{{ if .Sources -}}
+::: {custom-style="Titre2"}
+Sources citées
+:::
+
+{{ range .Sources -}}
+::: {custom-style="Citation"}
+{{ . }}
+:::
+
+{{ end -}}
+{{ end -}}
+::: {custom-style="Titre2"}
+Annexe — contrôle automatique
+:::
+
+{{ range .Appendix -}}
+::: {custom-style="Corps"}
+{{ . }}
+:::
+
+{{ end -}}
+::: {custom-style="PiedDePage"}
+{{ .Attribution }}
+:::

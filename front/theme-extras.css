@@ -1,0 +1,131 @@
+/*
+ * Custom tokens and base tweaks layered on top of theme.css.
+ * theme.css is expected to match the tweakcn export format and may be
+ * regenerated/replaced wholesale — everything project-specific lives here.
+ */
+
+:root {
+  /* RGB triples — raw "R, G, B" for use with rgba()/color-mix() in props that
+     need the numeric form (e.g. aceternity GradientAnimation). Keep in sync
+     with the matching color tokens below. */
+  --primary-rgb: 14, 16, 22;
+  --violet-rgb: 124, 109, 242;
+  --chart-2-rgb: 25, 184, 214;
+
+  /* Encre: one living colour. --brand (Outremer) marks links, focus, the
+     active item and headline accents. --signal extends it into cyan and is
+     reserved for the machine at work: the thinking orb, the composer beam,
+     the writing caret, the running step. Never body text, never the only
+     cue for a state. */
+  --brand: rgb(43, 59, 234);
+  --brand-foreground: rgb(255, 255, 255);
+  --brand-soft: rgb(233, 235, 254);
+  --brand-soft-foreground: rgb(36, 48, 190);
+  --signal: rgb(25, 184, 214);
+
+  /* Semantic accents (deltas, tags) */
+  --pos: rgb(14, 143, 99);
+  --pos-foreground: rgb(255, 255, 255);
+  --pos-soft: rgb(227, 245, 238);
+  --pos-soft-foreground: rgb(10, 105, 73);
+  --neg: rgb(234, 88, 12);
+  --neg-foreground: rgb(255, 255, 255);
+  --neg-soft: rgb(255, 237, 213);
+  --neg-soft-foreground: rgb(176, 68, 21);
+  --violet: rgb(124, 109, 242);
+  --violet-foreground: rgb(255, 255, 255);
+  --violet-soft: rgb(236, 233, 254);
+  --violet-soft-foreground: rgb(76, 63, 174);
+  --amber: rgb(194, 122, 14);
+  --amber-soft: rgb(251, 241, 223);
+  --amber-soft-foreground: rgb(138, 85, 8);
+
+  /* Ambient "paper" background tokens */
+  --bg-base: rgb(241, 242, 245);
+  --bg-warm: oklch(0.97 0.01 250);
+  --bg-cool: oklch(0.95 0.02 265);
+
+  /* Shell-level shadows for the floating app card */
+  --shadow-shell: 0 1px 0 rgba(14, 16, 22, 0.03), 0 24px 48px -28px rgba(20, 28, 60, 0.2);
+  --shadow-lift: 0 1px 2px 0 rgba(14, 16, 22, 0.06), 0 8px 24px -12px rgba(20, 28, 60, 0.18);
+}
+
+.dark {
+  /* RGB triples — dark */
+  --primary-rgb: 236, 238, 243;
+  --violet-rgb: 167, 139, 250;
+  --chart-2-rgb: 63, 216, 240;
+
+  /* Encre — dark */
+  --brand: rgb(139, 151, 255);
+  --brand-foreground: rgb(10, 11, 15);
+  --brand-soft: rgba(139, 151, 255, 0.14);
+  --brand-soft-foreground: rgb(178, 186, 255);
+  --signal: rgb(63, 216, 240);
+
+  /* Semantic accents — dark */
+  --pos: rgb(52, 211, 153);
+  --pos-foreground: rgb(10, 10, 10);
+  --pos-soft: rgba(52, 211, 153, 0.13);
+  --pos-soft-foreground: rgb(110, 231, 183);
+  --neg: rgb(251, 146, 60);
+  --neg-foreground: rgb(10, 10, 10);
+  --neg-soft: rgba(251, 146, 60, 0.15);
+  --neg-soft-foreground: rgb(253, 186, 116);
+  --violet: rgb(167, 139, 250);
+  --violet-foreground: rgb(10, 10, 10);
+  --violet-soft: rgba(167, 139, 250, 0.15);
+  --violet-soft-foreground: rgb(196, 181, 253);
+  --amber: rgb(245, 181, 71);
+  --amber-soft: rgba(245, 181, 71, 0.13);
+  --amber-soft-foreground: rgb(248, 200, 120);
+
+  /* Ambient "paper" background — dark */
+  --bg-base: rgb(8, 9, 12);
+  --bg-warm: oklch(0.2 0.01 250);
+  --bg-cool: oklch(0.19 0.02 265);
+
+  /* Shell-level shadows — dark */
+  --shadow-shell: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 10px 28px -12px rgba(0, 0, 0, 0.6);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-foreground: var(--brand-soft-foreground);
+  --color-signal: var(--signal);
+  --color-pos: var(--pos);
+  --color-pos-foreground: var(--pos-foreground);
+  --color-pos-soft: var(--pos-soft);
+  --color-pos-soft-foreground: var(--pos-soft-foreground);
+  --color-neg: var(--neg);
+  --color-neg-foreground: var(--neg-foreground);
+  --color-neg-soft: var(--neg-soft);
+  --color-neg-soft-foreground: var(--neg-soft-foreground);
+  --color-violet: var(--violet);
+  --color-violet-foreground: var(--violet-foreground);
+  --color-violet-soft: var(--violet-soft);
+  --color-violet-soft-foreground: var(--violet-soft-foreground);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-amber-soft-foreground: var(--amber-soft-foreground);
+
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --shadow-shell: var(--shadow-shell);
+  --shadow-lift: var(--shadow-lift);
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "set": "accent_and_casing_variants",
+  "note": "The same question written three ways. `unaccent` is applied to the query exactly as it was applied to the text at write time (docs/PLAN.md §6.2), so an accent-stripped or upper-cased query must reach the same articles in the same order. A drop here is a normalisation bug, not a relevance opinion — which is why it is reported as agreement against the reference variant rather than folded into nDCG.",
+  "cases": [
+    {
+      "id": "var-001a",
+      "category": "rupture",
+      "tags": ["accent_variant"],
+      "query": "indemnité de licenciement et condition d'ancienneté",
+      "gold": [{"article": "L1234-9", "grade": 2}, {"article": "R1234-1", "grade": 1}, {"article": "R1234-2", "grade": 1}],
+      "note": "Reference form, correctly accented, mixed case."
+    },
+    {
+      "id": "var-001b",
+      "category": "rupture",
+      "tags": ["accent_variant"],
+      "variant_of": "var-001a",
+      "query": "INDEMNITE DE LICENCIEMENT ET CONDITION D'ANCIENNETE",
+      "gold": [{"article": "L1234-9", "grade": 2}, {"article": "R1234-1", "grade": 1}, {"article": "R1234-2", "grade": 1}],
+      "note": "Upper case and unaccented — how text pasted out of a scanned pleading or an OCR layer usually arrives."
+    },
+    {
+      "id": "var-002a",
+      "category": "droit_du_travail",
+      "tags": ["accent_variant"],
+      "query": "congés payés durée du congé annuel du salarié",
+      "gold": [{"article": "L3141-3", "grade": 2}, {"article": "L3141-1", "grade": 1}, {"article": "L3141-7", "grade": 1}],
+      "note": "Reference form. 'Congés payés' is the highest-frequency accented phrase in French employment law, so it is the right probe for the unaccent path."
+    },
+    {
+      "id": "var-002b",
+      "category": "droit_du_travail",
+      "tags": ["accent_variant"],
+      "variant_of": "var-002a",
+      "query": "conges payes duree du conge annuel du salarie",
+      "gold": [{"article": "L3141-3", "grade": 2}, {"article": "L3141-1", "grade": 1}, {"article": "L3141-7", "grade": 1}],
+      "note": "Fully unaccented lower case — the form a lawyer types on a keyboard set to another layout, and the one that breaks a naive tsvector setup outright."
+    },
+    {
+      "id": "var-003a",
+      "category": "droit_du_travail",
+      "tags": ["accent_variant"],
+      "query": "harcèlement moral dégradation des conditions de travail",
+      "gold": [{"article": "L1152-1", "grade": 2}, {"article": "L1152-4", "grade": 1}, {"article": "L1152-3", "grade": 1}],
+      "note": "Reference form."
+    },
+    {
+      "id": "var-003b",
+      "category": "droit_du_travail",
+      "tags": ["accent_variant"],
+      "variant_of": "var-003a",
+      "query": "Harcelement Moral Degradation Des Conditions De Travail",
+      "gold": [{"article": "L1152-1", "grade": 2}, {"article": "L1152-4", "grade": 1}, {"article": "L1152-3", "grade": 1}],
+      "note": "Title case and unaccented at once — the two normalisation axes combined."
+    },
+    {
+      "id": "var-004a",
+      "category": "procedure",
+      "tags": ["accent_variant"],
+      "query": "référé prud'homal créance non sérieusement contestable",
+      "gold": [{"article": "R1455-7", "grade": 2}, {"article": "R1455-5", "grade": 1}],
+      "note": "Reference form. Three accented words plus an apostrophe, which is the other tokenisation hazard."
+    },
+    {
+      "id": "var-004b",
+      "category": "procedure",
+      "tags": ["accent_variant"],
+      "variant_of": "var-004a",
+      "query": "refere prud'homal creance non serieusement contestable",
+      "gold": [{"article": "R1455-7", "grade": 2}, {"article": "R1455-5", "grade": 1}],
+      "note": "Unaccented. 'refere' also happens to be a valid French word form, so this variant additionally checks that stripping accents does not change the stem the french configuration picks."
+    }
+  ]
+}

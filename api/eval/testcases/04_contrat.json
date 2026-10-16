@@ -1,0 +1,76 @@
+{
+  "set": "contrat_de_travail",
+  "note": "Formation and execution of the contract, and the CDD regime. Mostly clean statutory lookups, kept separate so the scoreboard can show whether one category carries the average.",
+  "cases": [
+    {
+      "id": "con-001",
+      "category": "contrat",
+      "query": "le contrat à durée indéterminée est-il la forme normale de la relation de travail",
+      "gold": [{"article": "L1221-2", "grade": 2}, {"article": "L1221-1", "grade": 1}],
+      "note": "One-sentence answer, verbatim in the text. Included as a sanity floor: any strategy scoring below 1.0 on recall@5 here is broken."
+    },
+    {
+      "id": "con-002",
+      "category": "contrat",
+      "query": "durée maximale de la période d'essai dans un contrat à durée déterminée",
+      "gold": [{"article": "L1242-10", "grade": 2}],
+      "note": "Single-gold case, and the counterpart to neg-008: the CDD période d'essai IS in the corpus, the CDI one is not. Together they check that the system distinguishes 'I have this' from 'I have something that looks like this'."
+    },
+    {
+      "id": "con-003",
+      "category": "contrat",
+      "query": "dans quels cas peut-on recourir à un contrat à durée déterminée",
+      "gold": [{"article": "L1242-2", "grade": 2}, {"article": "L1242-3", "grade": 2}, {"article": "L1242-1", "grade": 1}, {"article": "L1242-6", "grade": 1}],
+      "note": "Two enumerating articles that must both be returned; L1242-1 states the prohibition that frames them. A system returning only one of L1242-2 / L1242-3 gives an incomplete list of authorised cases."
+    },
+    {
+      "id": "con-004",
+      "category": "contrat",
+      "query": "durée totale maximale d'un CDD renouvellement compris à défaut d'accord de branche",
+      "gold": [{"article": "L1242-8-1", "grade": 2}, {"article": "L1242-8", "grade": 1}, {"article": "L1242-8-2", "grade": 1}],
+      "note": "The 'à défaut d'accord' supplétif article is the one that answers, and it is numerically and lexically almost identical to the two around it. A precision test disguised as a lookup."
+    },
+    {
+      "id": "con-005",
+      "category": "contrat",
+      "query": "prime de précarité versée à la fin d'un contrat à durée déterminée",
+      "gold": [{"article": "L1243-8", "grade": 2}, {"article": "L1243-10", "grade": 2}],
+      "note": "'prime de précarité' is the practitioner's name for what the Code calls 'indemnité de fin de contrat'. L1243-10 (the exclusions) is primary because it decides whether it is owed at all."
+    },
+    {
+      "id": "con-006",
+      "category": "contrat",
+      "query": "clause attributive de juridiction dans un contrat de travail est-elle valable",
+      "gold": [{"article": "L1221-5", "grade": 2}, {"article": "L1411-4", "grade": 1}],
+      "note": "Two-word statutory phrase, one-sentence answer, plus a jurisdictional article in an entirely different book that says the same thing differently. Tests cross-book gathering."
+    },
+    {
+      "id": "con-007",
+      "category": "contrat",
+      "query": "obligation d'exécuter le contrat de travail de bonne foi",
+      "gold": [{"article": "L1222-1", "grade": 2}],
+      "note": "The shortest article in the corpus (eight words). Dense retrieval systematically under-ranks very short chunks; this is the extreme case."
+    },
+    {
+      "id": "con-008",
+      "category": "contrat",
+      "query": "quelles informations écrites l'employeur doit-il remettre au salarié sur sa relation de travail",
+      "gold": [{"article": "L1221-5-1", "grade": 2}],
+      "note": "The 2023 transposition of the EU transparent-working-conditions directive. Paired with tmp-005, which runs it at a 2019 as-of date where the article did not exist."
+    },
+    {
+      "id": "con-009",
+      "category": "contrat",
+      "query": "déclaration préalable à l'embauche et sanction en cas de non-respect",
+      "gold": [{"article": "L1221-10", "grade": 2}, {"article": "L1221-11", "grade": 2}],
+      "note": "Obligation and penalty in two adjacent articles, both primary. A single-hit answer here is legally incomplete."
+    },
+    {
+      "id": "con-010",
+      "category": "contrat",
+      "query": "poursuite de la relation de travail après le terme du CDD requalification en CDI",
+      "gold": [{"article": "L1243-11", "grade": 2}, {"article": "L1243-11-1", "grade": 1}, {"article": "L1245-1", "grade": 1}],
+      "note": "Multi-hop in miniature: the automatic requalification rule (L1243-11) and the sanction regime (L1245-1) sit in different chapters and neither cites the query's vocabulary."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "set": "vocabulary_mismatch",
+  "note": "The queries a lawyer (or a client relaying facts) actually types: everyday French, no statutory vocabulary, sometimes first-person. The lexical arm is expected to be near-useless here because websearch_to_tsquery ANDs its terms; this set is where the vector arm has to earn its place.",
+  "cases": [
+    {
+      "id": "voc-001",
+      "category": "rupture",
+      "tags": ["vocab_mismatch"],
+      "query": "faire virer quelqu'un du jour au lendemain sans lui payer de préavis",
+      "gold": [{"article": "L1234-1", "grade": 2}, {"article": "L1234-9", "grade": 2}, {"article": "L1234-5", "grade": 1}],
+      "note": "The canonical mismatch case. Nothing in the query appears in the corpus: the statutory hinge is 'faute grave', which the lawyer never typed, and the articles express it as an exception ('lorsque le licenciement n'est pas motivé par une faute grave')."
+    },
+    {
+      "id": "voc-002",
+      "category": "rupture",
+      "tags": ["vocab_mismatch"],
+      "query": "mon employeur m'a mise dehors quand il a su que j'étais enceinte",
+      "gold": [{"article": "L1225-4", "grade": 2}, {"article": "L1225-1", "grade": 2}, {"article": "L1225-5", "grade": 1}, {"article": "L1132-1", "grade": 1}],
+      "note": "First-person client narrative. 'mise dehors' has to reach 'rompre le contrat de travail', and 'enceinte' is one of the few query words that survives into the text — a partial lexical anchor, which makes it a good RRF case."
+    },
+    {
+      "id": "voc-003",
+      "category": "droit_du_travail",
+      "tags": ["vocab_mismatch"],
+      "query": "on m'a pourri la vie au bureau pendant des mois, mise à l'écart et remarques humiliantes",
+      "gold": [{"article": "L1152-1", "grade": 2}, {"article": "L1152-3", "grade": 1}, {"article": "L1152-4", "grade": 1}],
+      "note": "Zero lexical overlap with 'agissements répétés de harcèlement moral'. Pure semantic hop; if the vector arm cannot do this, the hybrid design has no justification."
+    },
+    {
+      "id": "voc-004",
+      "category": "contrat",
+      "tags": ["vocab_mismatch"],
+      "query": "je veux casser mon CDD avant la fin parce que j'ai trouvé un CDI ailleurs",
+      "gold": [{"article": "L1243-2", "grade": 2}, {"article": "L1243-1", "grade": 1}, {"article": "L1243-3", "grade": 1}],
+      "note": "The facts point to the L1243-2 exception, not the L1243-1 principle, so ranking matters more than recall: returning the principle first gives the wrong practical answer."
+    },
+    {
+      "id": "voc-005",
+      "category": "droit_du_travail",
+      "tags": ["vocab_mismatch"],
+      "query": "est-ce que mon patron peut me faire payer le matériel que j'ai cassé en le retenant sur ma paie",
+      "gold": [{"article": "L3251-1", "grade": 2}, {"article": "L3251-2", "grade": 1}, {"article": "L3251-4", "grade": 1}],
+      "note": "'paie' versus 'salaire', 'faire payer' versus 'compenser des sommes dues', 'matériel' versus 'fournitures diverses'. Three separate vocabulary hops in one short query."
+    },
+    {
+      "id": "voc-006",
+      "category": "procedure",
+      "tags": ["vocab_mismatch"],
+      "query": "j'ai combien de temps pour attaquer mon ancien employeur aux prud'hommes après mon licenciement",
+      "gold": [{"article": "L1471-1", "grade": 2}, {"article": "L1235-7", "grade": 1}],
+      "note": "'attaquer' must reach 'action ... se prescrit par'. Also a near-miss trap: L3245-1 (salary claims, three years) is lexically closer to 'combien de temps' phrasing and is the wrong answer for a dismissal."
+    },
+    {
+      "id": "voc-007",
+      "category": "droit_du_travail",
+      "tags": ["vocab_mismatch"],
+      "query": "on m'a écarté d'une promotion à cause de mes origines",
+      "gold": [{"article": "L1132-1", "grade": 2}, {"article": "L1132-4", "grade": 1}],
+      "note": "'écarté' does appear in L1132-1, but attached to recruitment rather than promotion, so the lexical arm can rank it for a partly wrong reason. Worth watching which arm supplies the hit."
+    },
+    {
+      "id": "voc-008",
+      "category": "contrat",
+      "tags": ["vocab_mismatch"],
+      "query": "j'ai enchaîné les missions pendant deux ans sans jamais rien signer, est-ce que je peux demander un CDI",
+      "gold": [{"article": "L1245-1", "grade": 2}, {"article": "L1245-2", "grade": 2}, {"article": "L1242-1", "grade": 1}],
+      "note": "Requalification asked in facts, not in law. L1245-1 is a list of cross-references with barely any prose — the vocabulary gap and the thin-text problem stacked on top of each other."
+    },
+    {
+      "id": "voc-009",
+      "category": "rupture",
+      "tags": ["vocab_mismatch"],
+      "query": "la boîte ferme définitivement, est-ce que j'ai quand même droit à mon préavis et à mon indemnité",
+      "gold": [{"article": "L1234-7", "grade": 2}, {"article": "L1234-10", "grade": 2}, {"article": "L1234-12", "grade": 1}],
+      "note": "'la boîte ferme' → 'cessation de l'entreprise'. Two near-identical one-sentence articles (L1234-7 for préavis, L1234-10 for indemnité) must BOTH come back, and L1234-12 reverses the answer for force majeure."
+    },
+    {
+      "id": "voc-010",
+      "category": "procedure",
+      "tags": ["vocab_mismatch"],
+      "query": "je veux faire condamner mon employeur tout de suite à me verser mes salaires en retard, c'est urgent",
+      "gold": [{"article": "R1455-7", "grade": 2}, {"article": "R1455-5", "grade": 1}, {"article": "R1455-6", "grade": 1}],
+      "note": "The lawyer's word is 'référé' and the client's is 'tout de suite'; the query deliberately uses neither. The answer hinges on 'obligation non sérieusement contestable', which no lay phrasing contains."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+export const SIDEBAR_COOKIE_NAME = "sidebar:state";
+export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+export const SIDEBAR_WIDTH = "200px";
+export const SIDEBAR_WIDTH_MOBILE = "18rem";
+export const SIDEBAR_WIDTH_ICON = "3.5rem";
+export const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+export const SIDEBAR_WIDTH_DEFAULT = 200;
+export const SIDEBAR_WIDTH_MIN = 180;
+export const SIDEBAR_WIDTH_MAX = 400;
+export const SIDEBAR_WIDTH_STORAGE_KEY = "sidebar:width";

@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@import "../theme.css";
+@import "../theme-extras.css";
+@import "./lib/styles/motion.css";
+@import "./lib/styles/encre.css";
+
+/* all element except data-slot tabs-trigger. In the base layer, so a
+   border-colour utility (border-transparent, border-brand/40…) can still win:
+   unlayered, this rule beat every utility regardless of specificity. */
+@layer base {
+  *:not([data-slot="tabs-trigger"]),
+  *::before,
+  *::after {
+    border-color: var(--border);
+  }
+}
+
+/* Text that is waiting on the machine: a light sweeps across it. */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--muted-foreground) 0%,
+    var(--muted-foreground) 35%,
+    var(--foreground) 50%,
+    var(--muted-foreground) 65%,
+    var(--muted-foreground) 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.2s linear infinite;
+  color: var(--muted-foreground);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+/* Buttons cursor */
+[data-slot="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--muted-foreground) 20%, transparent);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--muted-foreground) 40%, transparent);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--muted-foreground) 20%, transparent) transparent;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* The rail is a flat, matte strip of the sidebar tone; the inset frame is
+   the only lifted surface. */
+[data-slot="sidebar-container"] {
+  background-color: var(--sidebar);
+}
+[data-slot="sidebar-inner"] {
+  background-color: transparent;
+}
+
+/* SVG fractal-noise grain overlay — non-intrusive: renders as ::after on top,
+   pointer-events:none, blend-mode overlay. No positioning side-effects on children. */
+.noise-grain {
+  position: relative;
+}
+.noise-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  background-size: 220px 220px;
+}
+.dark .noise-grain::after {
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+}
+
+/* The inset frame: a matte reading surface. The name is historical — the
+   colour wash and grain are gone; reading zones stay opaque and neutral. */
+.surface-noise {
+  position: relative;
+  background-color: var(--card);
+}
+
+/* ——— Card border softening (elevation lives on the card component now) ———
+   The resting shadow is `shadow-sm` on the card component's default variant
+   (theme-defined). Here we only soften the hairline border and keep sidebar
+   cards flat. */
+[data-slot="card"] {
+  border-color: color-mix(in oklab, var(--border) 70%, transparent);
+}
+[data-slot="sidebar"] [data-slot="card"] {
+  box-shadow: none;
+}
+/* ——— Toasts above overlays ———
+   Sileo's viewport and every bits-ui portal (sheet, dialog, popover) sit at
+   z-index 50, so a portal appended later in <body> painted over the toasts.
+   `:root` outranks sileo.css's own rule regardless of load order. */
+:root [data-sileo-viewport] {
+  z-index: 100;
+}

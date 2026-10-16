@@ -1,0 +1,90 @@
+{
+  "set": "rupture_du_contrat",
+  "note": "Dismissal and termination: the bulk of prud'homal litigation and the practice area the MVP corpus was scoped to (docs/PLAN.md §5.3). If retrieval is weak here, the product has no slice 2.",
+  "cases": [
+    {
+      "id": "rup-001",
+      "category": "rupture",
+      "query": "licenciement pour motif personnel cause réelle et sérieuse",
+      "gold": [{"article": "L1232-1", "grade": 2}, {"article": "L1232-6", "grade": 1}, {"article": "L1235-3", "grade": 1}],
+      "note": "The single most-typed employment-law query there is. L1232-1 is two sentences; the words 'cause réelle et sérieuse' also appear in L1233-2, L1235-3 and L1235-5, so lexical rank alone is nearly useless."
+    },
+    {
+      "id": "rup-002",
+      "category": "rupture",
+      "query": "convocation à l'entretien préalable au licenciement et assistance du salarié",
+      "gold": [{"article": "L1232-2", "grade": 2}, {"article": "L1232-4", "grade": 2}, {"article": "L1232-3", "grade": 1}],
+      "note": "Procedure-of-form question where a missed article is a procedural irregularity in a real pleading. Both the convocation rule and the assistance rule are primary."
+    },
+    {
+      "id": "rup-003",
+      "category": "rupture",
+      "query": "délai minimum entre l'entretien préalable et l'envoi de la lettre de licenciement",
+      "gold": [{"article": "L1232-6", "grade": 2}, {"article": "L1232-2", "grade": 1}],
+      "note": "The answer ('deux jours ouvrables') is one clause in a long article about something else (the notification letter). Tests whether chunk-level retrieval finds a rule that is not what its article is titled after."
+    },
+    {
+      "id": "rup-004",
+      "category": "rupture",
+      "query": "barème d'indemnité en cas de licenciement sans cause réelle et sérieuse",
+      "gold": [{"article": "L1235-3", "grade": 2}, {"article": "L1235-3-1", "grade": 2}, {"article": "L1235-5", "grade": 1}],
+      "note": "The 'barème Macron'. L1235-3 is mostly a numeric table, which embeds badly — a known weak spot for dense retrieval that this case is designed to surface. L1235-3-1 (the nullity carve-out) is primary because it reverses the answer."
+    },
+    {
+      "id": "rup-005",
+      "category": "rupture",
+      "query": "définition du licenciement pour motif économique suppression d'emploi difficultés économiques",
+      "gold": [{"article": "L1233-3", "grade": 2}, {"article": "L1233-2", "grade": 1}, {"article": "L1233-4", "grade": 1}],
+      "note": "Long article, statutory vocabulary, should be easy. Its role is as a control: if a strategy misses this one, its score elsewhere is noise."
+    },
+    {
+      "id": "rup-006",
+      "category": "rupture",
+      "query": "critères d'ordre des licenciements pour motif économique",
+      "gold": [{"article": "L1233-5", "grade": 2}, {"article": "L1233-7", "grade": 1}, {"article": "L1233-6", "grade": 1}],
+      "note": "Distinct from rup-005 by a single concept. The two together check that the reranker does not simply return the L1233 chapter for anything containing 'économique'."
+    },
+    {
+      "id": "rup-007",
+      "category": "rupture",
+      "query": "abandon de poste mise en demeure et présomption de démission",
+      "gold": [{"article": "L1237-1-1", "grade": 2}, {"article": "L1237-1", "grade": 1}],
+      "note": "Post-2022 rule, in force since 23/12/2022. Paired with tmp-001 and tmp-002, which run the identical query at as-of dates either side of that boundary."
+    },
+    {
+      "id": "rup-008",
+      "category": "rupture",
+      "query": "conditions de la mise à la retraite d'un salarié par l'employeur",
+      "gold": [{"article": "L1237-5", "grade": 2}, {"article": "L1237-8", "grade": 2}, {"article": "L1237-7", "grade": 1}, {"article": "L1237-6", "grade": 1}],
+      "note": "L1237-8 is primary because it carries the consequence a lawyer actually needs: a mise à la retraite outside the conditions is a licenciement. Retrieving the conditions without the sanction answers half the question."
+    },
+    {
+      "id": "rup-009",
+      "category": "rupture",
+      "query": "indemnité de départ volontaire à la retraite du salarié",
+      "gold": [{"article": "L1237-9", "grade": 2}, {"article": "L1237-7", "grade": 1}],
+      "note": "Near-miss pair with rup-008: départ (salarié) versus mise à la retraite (employeur), four lines apart in the same section and almost identical lexically."
+    },
+    {
+      "id": "rup-010",
+      "category": "rupture",
+      "query": "protection de la salariée enceinte contre la rupture de son contrat de travail",
+      "gold": [{"article": "L1225-4", "grade": 2}, {"article": "L1225-5", "grade": 1}, {"article": "L1225-1", "grade": 1}, {"article": "L1225-6", "grade": 1}],
+      "note": "L1225-4 is the protection; L1225-5 is the fifteen-day annulment window that decides whether the claim is still available. Practically, missing L1225-5 loses the case."
+    },
+    {
+      "id": "rup-011",
+      "category": "rupture",
+      "query": "que doit remettre l'employeur au salarié à la fin du contrat pour France Travail",
+      "gold": [{"article": "R1234-9", "grade": 2}, {"article": "R1234-10", "grade": 1}],
+      "note": "The query names an institution the Code does not: the article says 'organisme gestionnaire du régime d'assurance chômage'. A named-entity gap that the lexical arm cannot bridge at all."
+    },
+    {
+      "id": "rup-012",
+      "category": "rupture",
+      "query": "remboursement des allocations chômage par l'employeur en cas de licenciement nul",
+      "gold": [{"article": "L1235-4", "grade": 2}, {"article": "L1235-3-1", "grade": 1}],
+      "note": "L1235-4 is a bare list of cross-references with almost no substantive text — the hardest possible shape for a dense retriever, and exactly the kind of article a note de synthèse must cite."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Private app: keep every crawler (search engines, AI scrapers) out.
+User-agent: *
+Disallow: /

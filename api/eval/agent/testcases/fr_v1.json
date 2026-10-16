@@ -1,0 +1,1892 @@
+{
+  "suite": "fr_v1",
+  "version": 1,
+  "note": "The 72-case French matrix (12 instruction classes × 6 dossier states), run on the COMPLETE agent outcome. Oracles are deterministic (assertions.go); gold lists are pending lawyer review.",
+  "cases": [
+    {
+      "id": "c01-s1",
+      "class": "greeting",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c01-s2",
+      "class": "greeting",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c01-s3",
+      "class": "greeting",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c01-s4",
+      "class": "greeting",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c01-s5",
+      "class": "greeting",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c01-s6",
+      "class": "greeting",
+      "state": "empty_dossier",
+      "instruction": "Bonjour Nomos, merci pour ton aide sur ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "max_dispatches": 8,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Une salutation : réponse brève, aucun livrable, aucune recherche, aucune question, peu de tours."
+    },
+    {
+      "id": "c02-s1",
+      "class": "status",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c02-s2",
+      "class": "status",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c02-s3",
+      "class": "status",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c02-s4",
+      "class": "status",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c02-s5",
+      "class": "status",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c02-s6",
+      "class": "status",
+      "state": "empty_dossier",
+      "instruction": "Où en sommes-nous sur ce dossier ? Dis-moi ce qui a déjà été fait et ce qui reste à faire.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "max_dispatches": 12,
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Un point d'étape dans un fil neuf : dire honnêtement ce que contient le dossier et ce qui n'a pas été fait, sans produire de livrable."
+    },
+    {
+      "id": "c03-s1",
+      "class": "named_piece",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Que dit l'avis de réception de la lettre de convocation (pièce n° 9) sur la date à laquelle elle a été présentée à M. Vasseur ?",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "require_pieces": [
+          "09-avis-de-reception-convocation.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_questions": true
+      },
+      "note": "La date de présentation (26 mars 2025) est dans la pièce 9 ; elle doit être citée."
+    },
+    {
+      "id": "c03-s2",
+      "class": "named_piece",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Que prévoit l'avenant du 1er mars 2023 (pièce n° 2) sur la présence de M. Benali au contrôle de départ des tournées ?",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "require_pieces": [
+          "02-avenant-fonction-et-forfait-2023-03-01.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_questions": true
+      },
+      "note": "La clause est à l'article 2 de l'avenant, après les clauses de fonction et de rémunération."
+    },
+    {
+      "id": "c03-s3",
+      "class": "named_piece",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Quelle date d'avis d'inaptitude la lettre de licenciement (pièce n° 14) retient-elle, et est-ce cohérent avec l'avis lui-même (pièce n° 9) ?",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "require_pieces": [
+          "14-lettre-de-licenciement-inaptitude-2025-05-20.pdf",
+          "09-avis-inaptitude-2025-04-14.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Contradiction C1 : la lettre vise le 4 avril, l'avis est du 14 avril 2025 ; les deux pièces doivent être citées."
+    },
+    {
+      "id": "c03-s4",
+      "class": "named_piece",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Que dit la lettre de refus partiel d'AXIA du 2 avril 2025 sur l'exclusion de l'article 7.3 ?",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "require_limitation": true
+      },
+      "note": "La lettre de refus est retenue hors du dossier : la réponse doit dire qu'elle manque, jamais en inventer le contenu."
+    },
+    {
+      "id": "c03-s5",
+      "class": "named_piece",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Que dit le procès-verbal de réception du lot 6 (pièce n° 11) sur les réserves ?",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "require_pieces": [
+          "11-proces-verbal-reception-chantier.docx"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_questions": true
+      },
+      "note": "La réception est prononcée sans réserve le 30 septembre 2024."
+    },
+    {
+      "id": "c03-s6",
+      "class": "named_piece",
+      "state": "empty_dossier",
+      "instruction": "Que dit la pièce n° 3 du dossier ?",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "synthesis",
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "require_limitation": true,
+        "forbid_source_types": [
+          "piece"
+        ]
+      },
+      "note": "Le dossier est vide : aucune pièce n° 3 n'existe."
+    },
+    {
+      "id": "c04-s1",
+      "class": "bordereau",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "bordereau"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Le bordereau est publié en DOCX téléchargeable ; pas de substitution par une note ou une chronologie."
+    },
+    {
+      "id": "c04-s2",
+      "class": "bordereau",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "bordereau"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Le bordereau est publié en DOCX téléchargeable ; pas de substitution par une note ou une chronologie."
+    },
+    {
+      "id": "c04-s3",
+      "class": "bordereau",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "bordereau"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Le bordereau est publié en DOCX téléchargeable ; pas de substitution par une note ou une chronologie."
+    },
+    {
+      "id": "c04-s4",
+      "class": "bordereau",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "bordereau"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Le bordereau est publié en DOCX téléchargeable ; pas de substitution par une note ou une chronologie."
+    },
+    {
+      "id": "c04-s5",
+      "class": "bordereau",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "bordereau"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Le bordereau est publié en DOCX téléchargeable ; pas de substitution par une note ou une chronologie."
+    },
+    {
+      "id": "c04-s6",
+      "class": "bordereau",
+      "state": "empty_dossier",
+      "instruction": "Classe les pièces et prépare le bordereau de communication de pièces.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "forbid_documents": [
+          "bordereau",
+          "chronology",
+          "legal_note",
+          "acte"
+        ],
+        "require_limitation": true,
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Aucune pièce : pas de bordereau vide présenté comme un livrable, une limite explicite."
+    },
+    {
+      "id": "c05-s1",
+      "class": "chronology_incident",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "incident": "chronology_15oct",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "complete_coverage": true,
+        "require_documents": [
+          "chronology"
+        ],
+        "docx_fidelity": true,
+        "gold_events": "vasseur_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "L'incident du 15 octobre, mot pour mot, sur les 18 pièces réelles de Vasseur : un seul run, lecture complète des 18 pièces, tous les événements de la liste or inclus ou laissés explicitement non résolus, dates d'événement et non de document, DOCX conforme aux lignes vérifiées, aucune question juridique forcée, aucune substitution, aucune recherche publique."
+    },
+    {
+      "id": "c05-s2",
+      "class": "chronology_incident",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "complete_coverage": true,
+        "require_documents": [
+          "chronology"
+        ],
+        "docx_fidelity": true,
+        "gold_events": "benali_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "require_limitation": true
+      },
+      "note": "Benali : le contrat est en cours, il n'y a pas de solde de tout compte — la borne finale doit être signalée, pas inventée."
+    },
+    {
+      "id": "c05-s3",
+      "class": "chronology_incident",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "complete_coverage": true,
+        "require_documents": [
+          "chronology"
+        ],
+        "docx_fidelity": true,
+        "gold_events": "quere_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_questions": true
+      },
+      "note": "Quéré : les contradictions de dates (C1, C3) doivent rester visibles ; la réunion de service est datée au mois près."
+    },
+    {
+      "id": "c05-s4",
+      "class": "chronology_incident",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "complete_coverage": true,
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ]
+      },
+      "note": "Pièces scannées, une pièce manquante et une pièce en cours de lecture : la chronologie dit ce qui manque et ne se dit jamais exhaustive sans couverture complète."
+    },
+    {
+      "id": "c05-s5",
+      "class": "chronology_incident",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "complete_coverage": true,
+        "require_documents": [
+          "chronology"
+        ],
+        "docx_fidelity": true,
+        "gold_events": "ferroplast_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_source_types": [
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau",
+          "synthesis"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ],
+        "require_limitation": true
+      },
+      "note": "Ferroplast (commercial) : ni contrat de travail ni solde de tout compte — la chronologie couvre le dossier et le dit."
+    },
+    {
+      "id": "c05-s6",
+      "class": "chronology_incident",
+      "state": "empty_dossier",
+      "instruction": "Établis la chronologie du dossier, pièce par pièce, du contrat de travail au solde de tout compte.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "chronology",
+          "legal_note",
+          "acte"
+        ],
+        "forbid_source_types": [
+          "piece",
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Incident du 15 octobre sur un dossier vide : une limite honnête, aucune chronologie fabriquée."
+    },
+    {
+      "id": "c06-s1",
+      "class": "exhaustive_synthesis",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "complete_coverage": true,
+        "gold_events": "vasseur_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c06-s2",
+      "class": "exhaustive_synthesis",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "complete_coverage": true,
+        "gold_events": "benali_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c06-s3",
+      "class": "exhaustive_synthesis",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "oracle": {
+        "outcomes": [
+          "completed"
+        ],
+        "complete_coverage": true,
+        "gold_events": "quere_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c06-s4",
+      "class": "exhaustive_synthesis",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "complete_coverage": true,
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c06-s5",
+      "class": "exhaustive_synthesis",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "complete_coverage": true,
+        "gold_events": "ferroplast_chronologie",
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte",
+          "bordereau"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c06-s6",
+      "class": "exhaustive_synthesis",
+      "state": "empty_dossier",
+      "instruction": "Fais une synthèse factuelle complète du dossier, en t'appuyant sur toutes les pièces sans exception.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "synthesis",
+          "legal_note",
+          "acte"
+        ],
+        "forbid_source_types": [
+          "piece",
+          "legifrance",
+          "judilibre",
+          "web"
+        ],
+        "forbid_tools": [
+          "search_web",
+          "search_law",
+          "search_caselaw"
+        ]
+      },
+      "note": "Synthèse exhaustive : couverture complète du périmètre gelé et rappel des événements matériels de la liste or."
+    },
+    {
+      "id": "c07-s1",
+      "class": "legal_note",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Rédige une note juridique sur la régularité de la procédure de licenciement de M. Vasseur, en particulier le délai entre la présentation de la convocation et l'entretien préalable.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "legal_note"
+        ],
+        "require_source_types": [
+          "piece",
+          "legifrance"
+        ]
+      },
+      "note": "Note juridique dans le domaine approuvé : pièces et textes Légifrance cités, résolus, applicables à la date des faits."
+    },
+    {
+      "id": "c07-s2",
+      "class": "legal_note",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Rédige une note juridique sur la validité de la convention de forfait en jours de M. Benali au regard du suivi de sa charge de travail.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "legal_note"
+        ],
+        "require_source_types": [
+          "piece",
+          "legifrance"
+        ]
+      },
+      "note": "Note juridique dans le domaine approuvé : pièces et textes Légifrance cités, résolus, applicables à la date des faits."
+    },
+    {
+      "id": "c07-s3",
+      "class": "legal_note",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Rédige une note juridique sur les conséquences de l'absence de reprise du paiement du salaire un mois après l'avis d'inaptitude de Mme Quéré.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "legal_note"
+        ],
+        "require_source_types": [
+          "piece",
+          "legifrance"
+        ]
+      },
+      "note": "Note juridique dans le domaine approuvé : pièces et textes Légifrance cités, résolus, applicables à la date des faits."
+    },
+    {
+      "id": "c07-s4",
+      "class": "legal_note",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Rédige une note juridique sur l'applicabilité de l'exclusion de l'article 7.3 du contrat MRH à une fuite de canalisation de partie commune.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true
+      },
+      "note": "Hors du domaine approuvé ou sans la pièce clé : aucune référence inventée ou non résolue ne passe le contrôle."
+    },
+    {
+      "id": "c07-s5",
+      "class": "legal_note",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Rédige une note juridique sur la rupture brutale de la relation commerciale établie avec BÂTI-NORD.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ]
+      },
+      "note": "Hors du domaine approuvé ou sans la pièce clé : aucune référence inventée ou non résolue ne passe le contrôle."
+    },
+    {
+      "id": "c07-s6",
+      "class": "legal_note",
+      "state": "empty_dossier",
+      "instruction": "Rédige une note juridique sur les chances de succès de ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "legal_note",
+          "acte"
+        ],
+        "forbid_source_types": [
+          "piece"
+        ]
+      },
+      "note": "Sans faits, pas de note : une question ou une limite honnête."
+    },
+    {
+      "id": "c08-s1",
+      "class": "ambiguous_analysis",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Analyse ce dossier.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ]
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c08-s2",
+      "class": "ambiguous_analysis",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Analyse ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ]
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c08-s3",
+      "class": "ambiguous_analysis",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Analyse ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ]
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c08-s4",
+      "class": "ambiguous_analysis",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Analyse ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c08-s5",
+      "class": "ambiguous_analysis",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Analyse ce dossier.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ]
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c08-s6",
+      "class": "ambiguous_analysis",
+      "state": "empty_dossier",
+      "instruction": "Analyse ce dossier.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_source_types": [
+          "piece"
+        ]
+      },
+      "note": "Demande ambiguë : l'agent analyse ou demande ce qu'on attend, sans livrer d'acte ni prétendre à une exhaustivité non vérifiée."
+    },
+    {
+      "id": "c09-s1",
+      "class": "cph_incident",
+      "state": "complete",
+      "dossier": "benali",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "incident": "cph_15oct",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "asked"
+        ],
+        "require_question": true,
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ]
+      },
+      "note": "L'incident du 15 octobre, mot pour mot, sur le dossier de résiliation judiciaire (Benali, contrat en cours), SANS compétence choisie : décision 5 — aucun acte sans compétence, l'agent propose la compétence par ask_lawyer ; pas de note de synthèse substituée, pas de conseil de renvoi."
+    },
+    {
+      "id": "c09-s2",
+      "class": "cph_incident",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "incident": "cph_15oct",
+      "competence": "requete-cph-resiliation-judiciaire",
+      "answers": {
+        "text": "Le salarié est toujours en poste chez SODIREX LOGISTIQUE. Saisine du conseil de prud'hommes de Lyon, section encadrement. Demandes : résiliation judiciaire aux torts exclusifs de l'employeur produisant les effets d'un licenciement sans cause réelle et sérieuse, rappel d'heures supplémentaires et congés payés afférents, indemnité forfaitaire pour travail dissimulé, chiffrés comme dans la note de chiffrage du dossier.",
+        "max_rounds": 3
+      },
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_documents": [
+          "acte"
+        ],
+        "require_source_types": [
+          "piece",
+          "legifrance"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ]
+      },
+      "note": "L'incident du 15 octobre AVEC la compétence CPH épinglée et les réponses matérielles de l'avocat : projet sourcé, sections et clauses de la compétence, textes résolus à leur date, DOCX contrôlé et téléchargeable, faits non établis signalés."
+    },
+    {
+      "id": "c09-s3",
+      "class": "cph_incident",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ]
+      },
+      "note": "Quéré est licenciée : une résiliation judiciaire n'a plus d'objet ; l'agent le signale ou demande, sans acte."
+    },
+    {
+      "id": "c09-s4",
+      "class": "cph_incident",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ]
+      },
+      "note": "Dossier d'assurance : une requête CPH n'a pas d'objet ; aucune pièce manquante inventée."
+    },
+    {
+      "id": "c09-s5",
+      "class": "cph_incident",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ]
+      },
+      "note": "Litige commercial : le conseil de prud'hommes n'est pas compétent ; pas d'acte, pas d'invention."
+    },
+    {
+      "id": "c09-s6",
+      "class": "cph_incident",
+      "state": "empty_dossier",
+      "instruction": "Peux tu analyser les pièces de ce dossier et me préparer un projet de requête CPH en résiliation judiciaire du contrat de travail.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "legal_note",
+          "synthesis"
+        ],
+        "forbid_source_types": [
+          "piece"
+        ]
+      },
+      "note": "Aucune pièce : aucun fait ne peut être tiré des métadonnées."
+    },
+    {
+      "id": "c10-s1",
+      "class": "explicit_subset",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "En te limitant à la notification de mise à pied, à la convocation, à l'avis de réception, au compte rendu d'entretien et à la lettre de licenciement, vérifie si les délais de la procédure de licenciement ont été respectés.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "allowed_pieces": [
+          "07-notification-mise-a-pied-conservatoire-2025-03-20.pdf",
+          "08-convocation-entretien-prealable-2025-03-24.pdf",
+          "09-avis-de-reception-convocation.pdf",
+          "10-compte-rendu-entretien-prealable-2025-03-31.docx",
+          "11-lettre-de-licenciement-faute-grave-2025-04-07.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "acte",
+          "bordereau"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c10-s2",
+      "class": "explicit_subset",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "En t'appuyant uniquement sur le contrat de travail, l'avenant du 1er mars 2023 et les trois bulletins de paie de 2024, indique la rémunération mensuelle brute de M. Benali et son évolution.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "allowed_pieces": [
+          "01-contrat-de-travail-2019-09-02.pdf",
+          "02-avenant-fonction-et-forfait-2023-03-01.pdf",
+          "03-bulletin-de-paie-2024-03.pdf",
+          "04-bulletin-de-paie-2024-06.pdf",
+          "05-bulletin-de-paie-2024-11.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "acte",
+          "bordereau"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c10-s3",
+      "class": "explicit_subset",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "En te limitant à l'avis d'inaptitude, à la correspondance avec le médecin du travail et aux courriers de reclassement, indique si l'employeur était dispensé de rechercher un reclassement.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "allowed_pieces": [
+          "08-correspondance-medecin-du-travail.pdf",
+          "09-avis-inaptitude-2025-04-14.pdf",
+          "10-courriers-reclassement-societes-du-groupe.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "acte",
+          "bordereau"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c10-s4",
+      "class": "explicit_subset",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "En te limitant au contrat MRH, au rapport de recherche de fuite et au rapport d'expertise VERNEUIL, indique l'origine de la fuite retenue par chacun.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "allowed_pieces": [
+          "01-contrat-mrh-axia-conditions-particulieres.pdf",
+          "04-rapport-recherche-de-fuite-aquapro.pdf",
+          "08-rapport-expertise-amiable-verneuil.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "acte",
+          "bordereau"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c10-s5",
+      "class": "explicit_subset",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "En te limitant aux trois factures, indique le total impayé et la date d'échéance de chacune.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "allowed_pieces": [
+          "04-facture-F2024-0412.pdf",
+          "05-facture-F2024-0455.pdf",
+          "06-facture-F2024-0501.pdf"
+        ],
+        "require_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ],
+        "forbid_documents": [
+          "chronology",
+          "acte",
+          "bordereau"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c10-s6",
+      "class": "explicit_subset",
+      "state": "empty_dossier",
+      "instruction": "En te limitant aux pièces n° 1 et 2, résume le contrat.",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_source_types": [
+          "piece"
+        ],
+        "forbid_tools": [
+          "search_web"
+        ]
+      },
+      "note": "Sous-ensemble explicite : aucune pièce hors du périmètre nommé par l'avocat n'est citée."
+    },
+    {
+      "id": "c11-s1",
+      "class": "historical_law",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Quelles étaient, en mars 2025, les règles applicables au délai minimal entre la présentation de la lettre de convocation et l'entretien préalable au licenciement ?",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_source_types": [
+          "legifrance"
+        ],
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Droit historique : les textes cités sont résolus dans leur version applicable à la date demandée (contrôle temporel)."
+    },
+    {
+      "id": "c11-s2",
+      "class": "historical_law",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Quel était, en 2019, lors de la conclusion du contrat de M. Benali, le régime légal des conventions de forfait en jours ?",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_source_types": [
+          "legifrance"
+        ],
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Droit historique : les textes cités sont résolus dans leur version applicable à la date demandée (contrôle temporel)."
+    },
+    {
+      "id": "c11-s3",
+      "class": "historical_law",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Quelles règles régissaient, en avril 2025, la contestation d'un avis d'inaptitude émis par le médecin du travail ?",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial"
+        ],
+        "require_source_types": [
+          "legifrance"
+        ],
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Droit historique : les textes cités sont résolus dans leur version applicable à la date demandée (contrôle temporel)."
+    },
+    {
+      "id": "c11-s4",
+      "class": "historical_law",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Quel était, en novembre 2024, le délai de déclaration d'un sinistre prévu par le code des assurances ?",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Hors du domaine approuvé : rien n'est cité qui n'ait été obtenu et résolu."
+    },
+    {
+      "id": "c11-s5",
+      "class": "historical_law",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Quelle était, en décembre 2024, la règle applicable à la rupture brutale d'une relation commerciale établie ?",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Hors du domaine approuvé : rien n'est cité qui n'ait été obtenu et résolu."
+    },
+    {
+      "id": "c11-s6",
+      "class": "historical_law",
+      "state": "empty_dossier",
+      "instruction": "Quel était le droit applicable aux faits de ce dossier à la date de la rupture ?",
+      "oracle": {
+        "outcomes": [
+          "completed",
+          "partial",
+          "asked"
+        ],
+        "require_limitation": true,
+        "forbid_source_types": [
+          "piece"
+        ],
+        "forbid_documents": [
+          "legal_note",
+          "acte"
+        ]
+      },
+      "note": "Sans faits, la date de la rupture est inconnue : question ou limite, jamais une date fabriquée."
+    },
+    {
+      "id": "c12-s1",
+      "class": "missing_material_input",
+      "state": "complete",
+      "dossier": "vasseur",
+      "instruction": "Vérifie si les demandes de M. Vasseur seront recevables compte tenu de la date à laquelle nous saisirons le conseil de prud'hommes.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    },
+    {
+      "id": "c12-s2",
+      "class": "missing_material_input",
+      "state": "evidence_beyond_first_passage",
+      "dossier": "benali",
+      "instruction": "Calcule le rappel d'heures supplémentaires dû à M. Benali au titre de l'année 2025.",
+      "fast": true,
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    },
+    {
+      "id": "c12-s3",
+      "class": "missing_material_input",
+      "state": "conflicting_dates",
+      "dossier": "quere",
+      "instruction": "Prépare l'argumentaire pour l'audience de jugement en tenant compte de la date de cette audience.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    },
+    {
+      "id": "c12-s4",
+      "class": "missing_material_input",
+      "state": "unreadable_pending_missing",
+      "dossier": "marchand-scan",
+      "instruction": "Calcule les intérêts de retard dus par AXIA jusqu'à la date de l'assignation.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    },
+    {
+      "id": "c12-s5",
+      "class": "missing_material_input",
+      "state": "outside_approved_scope",
+      "dossier": "ferroplast",
+      "instruction": "Chiffre l'indemnité pour rupture brutale en retenant la durée de préavis que le client souhaite revendiquer.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    },
+    {
+      "id": "c12-s6",
+      "class": "missing_material_input",
+      "state": "empty_dossier",
+      "instruction": "Calcule l'indemnité de licenciement due à notre client.",
+      "oracle": {
+        "outcomes": [
+          "asked",
+          "completed",
+          "partial"
+        ],
+        "require_limitation": true,
+        "forbid_documents": [
+          "acte"
+        ],
+        "forbid_source_types": [
+          "piece"
+        ]
+      },
+      "note": "Une donnée matérielle manque (date, position, période) : l'agent la demande ou dit qu'elle manque — il ne l'invente jamais."
+    }
+  ]
+}

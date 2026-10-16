@@ -1,0 +1,66 @@
+{{/*
+Bordereau de communication de pièces — template version bordereau_v1.
+
+This is a SERVER-OWNED structured document (docs/PLAN.md §7.3): it is fed to
+pandoc as markdown and every interpolated value has already been escaped by
+services/render.go (escapeMarkdown), so a piece title can carry no markup, no
+image reference and no raw HTML into the converter.
+
+The `custom-style` fenced divs map onto the Word styles defined in
+reference-bordereau-v1.docx — replacing that file with a firm's charte is the
+whole customisation surface.
+*/ -}}
+{{ if .DraftNotice -}}
+::: {custom-style="Mention"}
+{{ .DraftNotice }}
+:::
+
+{{ end -}}
+::: {custom-style="Titre1"}
+Bordereau de communication de pièces
+:::
+
+::: {custom-style="Corps"}
+**Dossier** : {{ .DossierTitle }}
+:::
+
+{{ if .ClientReference -}}
+::: {custom-style="Corps"}
+**Référence** : {{ .ClientReference }}
+:::
+
+{{ end -}}
+{{ if .MatterType -}}
+::: {custom-style="Corps"}
+**Nature du contentieux** : {{ .MatterType }}
+:::
+
+{{ end -}}
+::: {custom-style="Corps"}
+**Établi le** : {{ .GeneratedOn }} — **{{ .PieceCount }}** pièce(s) communiquée(s)
+:::
+
+::: {custom-style="Titre2"}
+Liste des pièces
+:::
+
+| N° | Intitulé de la pièce | Date | Nature | Fichier |
+|---:|:---------------------|:-----|:-------|:--------|
+{{ range .Pieces -}}
+| {{ .Ordinal }} | {{ .Title }} | {{ .Date }} | {{ .Kind }} | {{ .FileName }} |
+{{ end }}
+{{ if .Footnotes -}}
+::: {custom-style="Titre2"}
+Observations
+:::
+
+{{ range .Footnotes -}}
+::: {custom-style="Corps"}
+{{ . }}
+:::
+
+{{ end -}}
+{{ end -}}
+::: {custom-style="PiedDePage"}
+{{ .Attribution }}
+:::

@@ -1,0 +1,18 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/api ."
+  bin = "./tmp/api"
+  include_ext = ["go"]
+  exclude_dir = ["tmp", "vendor"]
+  delay = 200
+  stop_on_error = true
+  send_interrupt = true
+  kill_delay = 500
+
+[log]
+  time = false
+
+[misc]
+  clean_on_exit = true

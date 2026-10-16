@@ -1,0 +1,39 @@
+# Disposable dependencies for the Nomos agent evaluation.
+#
+# Started for the run, torn down after it — never the developer's database and
+# never production's.
+# The evaluation also refuses to start when another client is connected to
+# its database — a foreign API process would claim the run's steps and
+# execute them with ITS configuration.
+#
+#   docker compose -f .eval/docker-compose.yml up -d --wait
+#   export DATABASE_URL=postgres://nomos:nomos@localhost:55440/nomos_eval?sslmode=disable
+#   docker compose -f .eval/docker-compose.yml down -v
+#
+# Postgres is the pgvector image dev.sh uses; the API creates the vector and
+# unaccent extensions at boot (its user is the superuser here, as in dev.sh).
+# The data directory is a tmpfs: nothing survives `down`.
+#
+# Blob store: none to start. The API's S3 client is HTTPS-only, so
+# a plain MinIO cannot stand in for it; with no S3 credentials in the
+# environment the API uses its local filesystem backend, and the evaluation
+# points it at a fresh temporary directory it deletes at the end.
+
+name: nomos-agent-eval
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: nomos
+      POSTGRES_PASSWORD: nomos
+      POSTGRES_DB: nomos_eval
+    ports:
+      - "127.0.0.1:55440:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nomos -d nomos_eval"]
+      interval: 2s
+      timeout: 3s
+      retries: 30

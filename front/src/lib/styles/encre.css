@@ -1,0 +1,335 @@
+/*
+ * Encre — the Nomos visual layer on top of the starterkit's motion.css.
+ *
+ * Upstream owns motion.css (timings, route crossfade, control feedback);
+ * this file owns what is specific to Nomos: the type scale, the one loading
+ * language, and the `--signal` material that appears only while the machine
+ * works. Kept separate so a starterkit merge never conflicts here.
+ */
+
+/* ——— Type scale ———
+   Four steps replace the scatter of 10.5/11.5/12.5/13.5px sizes:
+   text-2xs (captions, kind tags) · text-xs (meta) · text-ui (controls,
+   labels) · text-sm (body) · text-read (assistant replies, long reading). */
+@theme {
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-ui: 0.8125rem;
+  --text-ui--line-height: 1.25rem;
+  --text-read: 0.9375rem;
+  --text-read--line-height: 1.65;
+}
+
+/* Editorial headings: page titles and the chat-home greeting. The serif is
+   never used below 20px or for UI text. */
+.display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.display em {
+  font-style: italic;
+  color: var(--brand);
+}
+
+/* ——— Content loading ———
+   Every skeleton sweeps a light across instead of pulsing. Overrides the
+   vendored primitive's `animate-pulse` through its data-slot hook. */
+[data-slot='skeleton'] {
+  background-color: var(--muted);
+  background-image: linear-gradient(
+    100deg,
+    transparent 40%,
+    color-mix(in oklab, var(--foreground) 6%, transparent) 50%,
+    transparent 60%
+  );
+  background-size: 300% 100%;
+  animation: encre-sweep 1.4s var(--motion-ease) infinite;
+}
+
+/* ——— Streaming text ———
+   Only the newest words of a reply carry this; settled text is plain. */
+.word-in {
+  animation: encre-word-in 0.42s var(--motion-ease) both;
+}
+
+/* The writing caret: a small point of signal light at the end of the text. */
+.signal-caret {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 4px;
+  border-radius: 999px;
+  vertical-align: 1px;
+  background: linear-gradient(135deg, var(--brand), var(--signal));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--signal) 70%, transparent);
+  animation: encre-breathe 1s ease-in-out infinite;
+}
+
+/* ——— Plan step glyphs ——— */
+.glyph-check {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  animation: encre-draw 0.45s 0.05s var(--motion-ease) forwards;
+}
+.glyph-spin {
+  transform-origin: 8px 8px;
+  animation: encre-spin 0.85s linear infinite;
+}
+.glyph-halo {
+  position: absolute;
+  inset: -5px;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--brand) 30%, transparent), transparent);
+  animation: encre-breathe 1.6s ease-in-out infinite;
+}
+.glyph-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--amber);
+  animation: encre-ping 1.6s var(--motion-ease) infinite;
+}
+
+/* A one-shot rise for items that arrive in a live list (plan steps,
+   artifacts, citations); stagger with an inline animation-delay. */
+.rise-in {
+  animation: encre-rise 0.42s var(--motion-spring) both;
+}
+
+@keyframes encre-sweep {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@keyframes encre-word-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+@keyframes encre-breathe {
+  50% {
+    opacity: 0.35;
+    scale: 0.8;
+  }
+}
+@keyframes encre-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes encre-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes encre-ping {
+  0% {
+    opacity: 0.7;
+    scale: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    scale: 1.9;
+  }
+}
+@keyframes encre-rise {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph-check {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ——— The rail ———
+   The app shell's always-collapsed icon column: quiet 34px buttons, the
+   current destination marked by a faint ink wash and a 2px Outremer tick on
+   the rail's edge — never a lifted card. */
+.rail-btn {
+  position: relative;
+  display: flex;
+  height: 2.125rem;
+  width: 2.125rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+.rail-btn:hover {
+  color: var(--foreground);
+  background-color: color-mix(in oklab, var(--foreground) 5%, transparent);
+}
+.rail-btn.is-active {
+  color: var(--foreground);
+  background-color: color-mix(in oklab, var(--foreground) 7%, transparent);
+}
+.rail-btn::before {
+  content: '';
+  position: absolute;
+  left: -0.5625rem;
+  top: 50%;
+  height: 0.875rem;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--brand);
+  opacity: 0;
+  translate: 0 -50%;
+  scale: 1 0.4;
+  transition:
+    opacity var(--motion-fast) var(--motion-ease),
+    scale 300ms var(--motion-spring);
+}
+.rail-btn.is-active::before {
+  opacity: 1;
+  scale: 1;
+}
+/* The one primary action reads by a hairline ring, not a filled block. */
+.rail-btn.is-primary {
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.rail-btn.is-primary:hover {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--foreground) 22%, transparent);
+}
+
+/* ——— Tabs ———
+   A white segment on a muted track rather than an ink pill: the selected
+   tab is a lifted card with ink text. Applies to MotionTabsList's indicator
+   and to plain tab lists alike (the vendored trigger paints the active tab
+   with --primary, which Encre made ink). */
+.motion-tab-indicator {
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+[data-slot='tabs-trigger'][data-state='active'] {
+  background-color: var(--card);
+  color: var(--foreground);
+}
+[data-motion-tabs] > [data-slot='tabs-trigger'][data-state='active'] {
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+/* In the mobile sheet (the rail's only form below md) the icons become
+   full-width rows and show their names. */
+.rail-label {
+  display: none;
+}
+[data-mobile='true'] [data-slot='sidebar-header'],
+[data-mobile='true'] [data-slot='sidebar-footer'] {
+  align-items: flex-start;
+  padding-inline: 1rem;
+}
+[data-mobile='true'] [data-slot='sidebar-content'] {
+  align-items: stretch;
+  padding-inline: 0.75rem;
+}
+[data-mobile='true'] .rail-btn {
+  width: 100%;
+  height: 2.5rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding-inline: 0.75rem;
+}
+[data-mobile='true'] .rail-label {
+  display: inline;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+/* Agent activity rows: a call's status glyph is static — only the summary
+   orb says the machine is at work. */
+.agent-activity .glyph-spin,
+.agent-activity .glyph-check,
+.agent-activity .glyph-halo,
+.agent-activity .glyph-ping {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+.agent-activity .glyph-halo,
+.agent-activity .glyph-ping {
+  display: none;
+}
+/* The summary label may wrap at 320px. */
+.agent-activity [role='status'] {
+  height: auto;
+  flex-wrap: wrap;
+}
+
+/* The source sheet carries a translated Solar close control; hide the
+   vendored Sheet's own (untranslated) one rather than edit the primitive. */
+.citation-sheet > button:last-child {
+  display: none;
+}
+
+/* Reduced motion: stored text appears at once, nothing sweeps, rises,
+   spins or travels; status icons and text stay. ThinkingOrb already paints
+   one still frame in this mode. */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  * {
+    scroll-behavior: auto !important;
+  }
+  .word-in,
+  .rise-in,
+  .signal-caret,
+  .shimmer,
+  .glyph-spin,
+  .glyph-check,
+  .glyph-halo,
+  .glyph-ping,
+  [data-slot='skeleton'],
+  [data-beam],
+  [data-beam]::before,
+  [data-beam]::after,
+  [data-beam-bloom],
+  [data-beam-bloom]::before,
+  [data-beam-bloom]::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .word-in,
+  .rise-in {
+    opacity: 1;
+    filter: none;
+    translate: none;
+  }
+  .glyph-check {
+    stroke-dashoffset: 0;
+  }
+  .glyph-halo,
+  .glyph-ping,
+  .signal-caret {
+    display: none;
+  }
+  [data-slot='skeleton'] {
+    background-image: none;
+  }
+}

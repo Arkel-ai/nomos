@@ -1,0 +1,32 @@
+node_modules/
+.svelte-kit/
+build/
+/api/*.pyc
+__pycache__/
+api/.venv/
+api/.env
+.ruff_cache/
+dist/
+*.egg-info/
+.DS_Store
+api/uv.lock
+
+front/.env
+
+# Playwright MCP scratch output (screenshots, console logs, a11y snapshots).
+# Agents drive the browser from the repo root, so this lands here.
+.playwright-mcp/
+
+# Local blob storage used when S3 is unconfigured (api/utils/blob.go).
+api/tmp/
+.astra/
+
+# Local agent instructions — not part of the published repo.
+CLAUDE.md
+AGENTS.md
+.claude/
+
+# Fictional evaluation dossiers (pinned by api/eval/agent/testdata/manifest.json)
+# and the reports the eval CLI writes.
+/testdata/
+/artifacts/

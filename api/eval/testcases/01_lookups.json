@@ -1,0 +1,111 @@
+{
+  "set": "straightforward_lookups",
+  "note": "The baseline case: a lawyer who already knows roughly what she is looking for and types the statutory vocabulary. If retrieval fails here it fails everywhere, so these are the floor, not the target.",
+  "cases": [
+    {
+      "id": "dt-001",
+      "category": "droit_du_travail",
+      "query": "indemnité légale de licenciement calcul par année d'ancienneté",
+      "gold": [{"article": "R1234-2", "grade": 2}, {"article": "R1234-1", "grade": 2}, {"article": "R1234-4", "grade": 1}, {"article": "L1234-9", "grade": 1}],
+      "note": "The answer is split between the L part (the right) and the R part (the arithmetic). A system that returns only L1234-9 has answered 'yes you are owed something' and not 'how much', so R1234-2 carries the primary grade."
+    },
+    {
+      "id": "dt-002",
+      "category": "droit_du_travail",
+      "query": "combien de jours de congés payés par mois de travail effectif",
+      "gold": [{"article": "L3141-3", "grade": 2}, {"article": "L3141-1", "grade": 1}, {"article": "L3141-7", "grade": 1}],
+      "note": "Single-article lookup with the exact statutory wording present in the text ('deux jours et demi ouvrables par mois'). Both arms should find it; a failure here means an indexing bug, not a ranking one."
+    },
+    {
+      "id": "dt-003",
+      "category": "droit_du_travail",
+      "query": "durée du préavis de licenciement en fonction de l'ancienneté du salarié",
+      "gold": [{"article": "L1234-1", "grade": 2}, {"article": "L1234-3", "grade": 1}, {"article": "L1234-2", "grade": 1}],
+      "note": "L1234-1 is the rule; L1234-3 (point de départ) and L1234-2 (clause moins favorable) are what a practitioner cites next. Tests whether the top 10 gathers a family or scatters it."
+    },
+    {
+      "id": "dt-004",
+      "category": "droit_du_travail",
+      "query": "égalité de rémunération entre les femmes et les hommes pour un travail de valeur égale",
+      "gold": [{"article": "L3221-2", "grade": 2}, {"article": "L3221-4", "grade": 2}, {"article": "L3221-3", "grade": 1}, {"article": "L3221-6", "grade": 1}],
+      "note": "Two primaries: the principle (L3221-2) and the definition of 'valeur égale' (L3221-4). Litigating the second is the whole fight, so a system that returns only the principle is not enough."
+    },
+    {
+      "id": "dt-005",
+      "category": "droit_du_travail",
+      "query": "définition du temps de travail effectif",
+      "gold": [{"article": "L3121-1", "grade": 2}, {"article": "L3121-2", "grade": 1}],
+      "note": "Short, high-frequency definition query. Its value is as a near-miss magnet: L3121-3, L3121-4 and L3121-9 all repeat the phrase 'temps de travail effectif' without defining it."
+    },
+    {
+      "id": "dt-006",
+      "category": "droit_du_travail",
+      "query": "le temps de trajet entre le domicile et le lieu de travail est-il du temps de travail effectif",
+      "gold": [{"article": "L3121-4", "grade": 2}, {"article": "L3121-5", "grade": 1}],
+      "note": "A yes/no question whose answer is 'non, sauf dépassement'. It sits one article away from dt-005 and shares almost all of its vocabulary — the pair measures whether the reranker separates two adjacent articles or just returns the section."
+    },
+    {
+      "id": "dt-007",
+      "category": "droit_du_travail",
+      "query": "astreinte définition et contreparties financières ou en repos",
+      "gold": [{"article": "L3121-9", "grade": 2}, {"article": "L3121-11", "grade": 1}, {"article": "L3121-12", "grade": 1}, {"article": "L3121-10", "grade": 1}],
+      "note": "One primary plus a three-article tail (accord, à défaut d'accord, articulation avec le repos). Rewards a system that gathers the supplétif/négocié pair the Code systematically splits."
+    },
+    {
+      "id": "dt-008",
+      "category": "droit_du_travail",
+      "query": "définition du harcèlement moral et obligation de prévention de l'employeur",
+      "gold": [{"article": "L1152-1", "grade": 2}, {"article": "L1152-4", "grade": 2}, {"article": "L1152-3", "grade": 1}],
+      "note": "Deliberately a two-part question in statutory vocabulary: definition AND prevention duty. The single-arm strategies tend to return the whole L1152 chapter, which scores well on recall and badly on precision@5."
+    },
+    {
+      "id": "dt-009",
+      "category": "droit_du_travail",
+      "query": "harcèlement sexuel et agissements sexistes obligations de l'employeur",
+      "gold": [{"article": "L1153-1", "grade": 2}, {"article": "L1153-5", "grade": 2}, {"article": "L1153-5-1", "grade": 1}, {"article": "L1153-2", "grade": 1}],
+      "note": "L1153-1 was rewritten in 2022 to add the 'sexiste' wording; the query uses that wording, so it also checks that the corpus holds the current version and not a stale one."
+    },
+    {
+      "id": "dt-010",
+      "category": "droit_du_travail",
+      "query": "heures complémentaires d'un salarié à temps partiel majoration et limites",
+      "gold": [{"article": "L3123-8", "grade": 2}, {"article": "L3123-9", "grade": 2}, {"article": "L3123-10", "grade": 1}],
+      "note": "L3123-8 is one sentence long. Short articles are systematically under-retrieved by dense models because there is little to embed — this case is here to expose that."
+    },
+    {
+      "id": "dt-011",
+      "category": "droit_du_travail",
+      "query": "retenue sur salaire pour compenser une somme due par le salarié à l'employeur",
+      "gold": [{"article": "L3251-1", "grade": 2}, {"article": "L3251-2", "grade": 2}, {"article": "L3251-3", "grade": 1}],
+      "note": "Principle + exceptions, in that order. Returning L3251-2 without L3251-1 would give the opposite legal answer, so both are primary."
+    },
+    {
+      "id": "dt-012",
+      "category": "droit_du_travail",
+      "query": "obligation de reclassement du salarié déclaré inapte par le médecin du travail",
+      "gold": [{"article": "L1226-2", "grade": 2}, {"article": "L1226-2-1", "grade": 2}, {"article": "L1226-4", "grade": 1}],
+      "note": "The corpus holds only the non-professional-origin branch (L1226-2 ff.); the professional branch (L1226-10 ff.) is out of scope. A good reminder that a high score here is scoped to what was ingested."
+    },
+    {
+      "id": "dt-013",
+      "category": "droit_du_travail",
+      "query": "quelles informations peut-on demander à un candidat lors d'un entretien de recrutement",
+      "gold": [{"article": "L1221-6", "grade": 2}, {"article": "L1221-8", "grade": 1}, {"article": "L1221-9", "grade": 1}, {"article": "L1221-7", "grade": 1}],
+      "note": "Natural-language phrasing over an article that never uses the word 'entretien'. A mild vocabulary gap, which is why it belongs in the lookups rather than the mismatch set."
+    },
+    {
+      "id": "dt-014",
+      "category": "droit_du_travail",
+      "query": "télétravail définition et obligations de l'employeur envers le télétravailleur",
+      "gold": [{"article": "L1222-9", "grade": 2}, {"article": "L1222-10", "grade": 2}, {"article": "L1222-11", "grade": 1}],
+      "note": "Paired with tmp-003: the same query at a 2015 as-of date must return none of these. Here it is the plain in-force lookup."
+    },
+    {
+      "id": "dt-015",
+      "category": "droit_du_travail",
+      "query": "sanction disciplinaire procédure et délai de prescription des faits fautifs",
+      "gold": [{"article": "L1332-4", "grade": 2}, {"article": "L1332-2", "grade": 2}, {"article": "L1332-1", "grade": 1}, {"article": "L1332-5", "grade": 1}],
+      "note": "Two primaries because the question is two questions. The two-month rule of L1332-4 is the one that decides most disciplinary cases, and it is a single short paragraph buried in a chapter of procedure."
+    }
+  ]
+}

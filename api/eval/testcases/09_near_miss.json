@@ -1,0 +1,96 @@
+{
+  "set": "near_miss_pairs",
+  "note": "Pairs of articles that are lexically almost identical and legally opposite. Each case names the article that ANSWERS in `gold` and the plausible impostor in `near_miss`. The harness reports an inversion rate: how often an impostor outranks the primary gold article. Recall cannot see this failure at all — both articles are in the top 10 — but a lawyer reading top-down gets the wrong rule.",
+  "cases": [
+    {
+      "id": "nm-001",
+      "category": "rupture",
+      "tags": ["near_miss"],
+      "query": "indemnité compensatrice de préavis lorsque le salarié n'exécute pas son préavis",
+      "gold": [{"article": "L1234-5", "grade": 2}, {"article": "L1234-4", "grade": 1}],
+      "near_miss": ["L1234-9", "R1234-2"],
+      "note": "Indemnité compensatrice DE PRÉAVIS versus indemnité DE LICENCIEMENT: four articles apart, both 'indemnité', both excluded by faute grave. Confusing them misstates the claim by several months of salary."
+    },
+    {
+      "id": "nm-002",
+      "category": "rupture",
+      "tags": ["near_miss"],
+      "query": "condition d'ancienneté pour avoir droit à l'indemnité de licenciement",
+      "gold": [{"article": "L1234-9", "grade": 2}, {"article": "R1234-1", "grade": 1}],
+      "near_miss": ["L1234-5", "L1234-1"],
+      "note": "The mirror of nm-001. Running both directions is what distinguishes a system that ranks correctly from one that always puts the same article of the pair first."
+    },
+    {
+      "id": "nm-003",
+      "category": "droit_du_travail",
+      "tags": ["near_miss"],
+      "query": "délai de prescription de l'action en paiement du salaire",
+      "gold": [{"article": "L3245-1", "grade": 2}],
+      "near_miss": ["L1471-1"],
+      "note": "Three years (L3245-1) versus two years (L1471-1), and L1471-1 explicitly carves salary claims OUT of its own rule. A ranker that puts L1471-1 first hands over the wrong limitation period."
+    },
+    {
+      "id": "nm-004",
+      "category": "droit_du_travail",
+      "tags": ["near_miss"],
+      "query": "délai de prescription des actions portant sur l'exécution du contrat de travail",
+      "gold": [{"article": "L1471-1", "grade": 2}],
+      "near_miss": ["L3245-1"],
+      "note": "Mirror of nm-003. The pair is the cleanest legal-consequence inversion available in this corpus."
+    },
+    {
+      "id": "nm-005",
+      "category": "contrat",
+      "tags": ["near_miss"],
+      "query": "rupture anticipée du CDD à l'initiative du salarié",
+      "gold": [{"article": "L1243-2", "grade": 2}, {"article": "L1243-3", "grade": 1}],
+      "near_miss": ["L1243-4"],
+      "note": "The two articles differ by one noun ('salarié' / 'employeur') and award damages in opposite directions."
+    },
+    {
+      "id": "nm-006",
+      "category": "contrat",
+      "tags": ["near_miss"],
+      "query": "rupture anticipée du CDD à l'initiative de l'employeur en dehors des cas autorisés",
+      "gold": [{"article": "L1243-4", "grade": 2}, {"article": "L1243-1", "grade": 1}],
+      "near_miss": ["L1243-2", "L1243-3"],
+      "note": "Mirror of nm-005."
+    },
+    {
+      "id": "nm-007",
+      "category": "droit_du_travail",
+      "tags": ["near_miss"],
+      "query": "rémunération des temps de pause et de restauration à défaut d'accord collectif",
+      "gold": [{"article": "L3121-8", "grade": 2}, {"article": "L3121-6", "grade": 1}],
+      "near_miss": ["L3121-2"],
+      "note": "L3121-2 says when a break IS working time; L3121-6 and L3121-8 say who pays for it and under which instrument. The Code's négocié/supplétif pattern, which produces this trap systematically."
+    },
+    {
+      "id": "nm-008",
+      "category": "rupture",
+      "tags": ["near_miss"],
+      "query": "conseiller du salarié qui assiste le salarié lors de l'entretien préalable",
+      "gold": [{"article": "L1232-7", "grade": 2}, {"article": "L1232-4", "grade": 1}],
+      "near_miss": ["L1453-4", "L1453-5"],
+      "note": "Conseiller du salarié (entretien préalable, in the firm) versus défenseur syndical (before the court). Both are 'assistance', both on an administrative list, both with time credits and near-identical drafting."
+    },
+    {
+      "id": "nm-009",
+      "category": "procedure",
+      "tags": ["near_miss"],
+      "query": "défenseur syndical assistant une partie devant la cour d'appel en matière prud'homale",
+      "gold": [{"article": "L1453-4", "grade": 2}, {"article": "L1453-9", "grade": 1}],
+      "near_miss": ["L1232-7", "L1232-8"],
+      "note": "Mirror of nm-008."
+    },
+    {
+      "id": "nm-010",
+      "category": "rupture",
+      "tags": ["near_miss"],
+      "query": "indemnité de mise à la retraite due par l'employeur",
+      "gold": [{"article": "L1237-7", "grade": 2}, {"article": "L1237-5", "grade": 1}],
+      "near_miss": ["L1237-9"],
+      "note": "Mise à la retraite (employer's initiative, indemnity at least equal to the dismissal indemnity) versus départ à la retraite (employee's initiative, a different and smaller scale). Two articles apart."
+    }
+  ]
+}

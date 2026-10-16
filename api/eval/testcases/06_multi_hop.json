@@ -1,0 +1,62 @@
+{
+  "set": "multi_hop",
+  "note": "Questions no single article answers. The gold set is deliberately two or three PRIMARY articles that live in different chapters, so recall@10 — not MRR — is the metric that matters. This is the shape a note de synthèse actually needs (docs/PLAN.md §1, slice 2).",
+  "cases": [
+    {
+      "id": "mh-001",
+      "category": "rupture",
+      "tags": ["multi_hop"],
+      "query": "un salarié licencié pour faute grave après douze ans d'ancienneté a-t-il droit au préavis et à l'indemnité de licenciement",
+      "gold": [{"article": "L1234-1", "grade": 2}, {"article": "L1234-9", "grade": 2}, {"article": "L1234-5", "grade": 1}],
+      "note": "Two independent rules, both expressed as an exception to faute grave and located in two different sections. Answering with either one alone produces a confidently half-wrong memo."
+    },
+    {
+      "id": "mh-002",
+      "category": "rupture",
+      "tags": ["multi_hop"],
+      "query": "calculer l'indemnité de licenciement d'un salarié ayant douze ans d'ancienneté et quel salaire de référence retenir",
+      "gold": [{"article": "R1234-2", "grade": 2}, {"article": "R1234-4", "grade": 2}, {"article": "R1234-1", "grade": 1}, {"article": "L1234-9", "grade": 1}],
+      "note": "Rate (R1234-2) and base (R1234-4) are two separate articles, and the second is the one clients dispute. Also a numeric-content case: R1234-2 is almost entirely fractions."
+    },
+    {
+      "id": "mh-003",
+      "category": "contrat",
+      "tags": ["multi_hop"],
+      "query": "requalification d'un CDD en CDI quel texte l'impose et devant quelle formation l'affaire est portée",
+      "gold": [{"article": "L1245-1", "grade": 2}, {"article": "L1245-2", "grade": 2}],
+      "note": "Substantive rule plus procedural route, two adjacent articles that share no vocabulary with each other. Both primary; either alone is unusable."
+    },
+    {
+      "id": "mh-004",
+      "category": "rupture",
+      "tags": ["multi_hop"],
+      "query": "licenciement nul pour harcèlement moral quelles sont les conséquences indemnitaires et le remboursement des allocations chômage",
+      "gold": [{"article": "L1152-3", "grade": 2}, {"article": "L1235-4", "grade": 2}, {"article": "L1235-3-1", "grade": 2}],
+      "note": "A three-hop across three different books: nullity (L1152-3), the indemnity floor for a nullity (L1235-3-1) and the Pôle emploi refund (L1235-4). The hardest case in the set."
+    },
+    {
+      "id": "mh-005",
+      "category": "droit_du_travail",
+      "tags": ["multi_hop"],
+      "query": "inaptitude d'origine non professionnelle reclassement impossible reprise du versement du salaire au bout d'un mois",
+      "gold": [{"article": "L1226-2-1", "grade": 2}, {"article": "L1226-4", "grade": 2}, {"article": "L1226-2", "grade": 1}],
+      "note": "The one-month salary-resumption rule (L1226-4) is what makes the employer move, and it is in a different article from the dismissal condition. Two primaries, adjacent but distinct."
+    },
+    {
+      "id": "mh-006",
+      "category": "procedure",
+      "tags": ["multi_hop"],
+      "query": "contester un licenciement économique : dans quel délai agir et quelle formation saisir en premier",
+      "gold": [{"article": "L1235-7", "grade": 2}, {"article": "L1411-1", "grade": 2}, {"article": "R1452-1", "grade": 1}],
+      "note": "Deadline and forum, from two different parts of the Code, asked in one sentence the way a client asks it. Tests whether the top 10 can hold two unrelated legal topics at once."
+    },
+    {
+      "id": "mh-007",
+      "category": "droit_du_travail",
+      "tags": ["multi_hop"],
+      "query": "salarié discriminé puis licencié : nullité de la rupture et sanction financière de l'employeur",
+      "gold": [{"article": "L1132-1", "grade": 2}, {"article": "L1132-4", "grade": 2}, {"article": "L1235-4", "grade": 1}],
+      "note": "The prohibition and the nullity are two articles apart; the refund obligation is in a third book and cites both. A forward-citation chain that pure similarity cannot follow."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "set": "temporal",
+  "note": "The as-of date is the date of the FACTS, not today (docs/PLAN.md §6.4). Each pair runs one identical query at two dates on either side of an article's entry into force. Cases with `forbidden` and no `gold` are scored only on leakage: an article not in force at the as-of date must not be reachable at all, and no amount of ranking quality trades against that.\n\nHONEST LIMIT: the fixture corpus holds only versions in force, so these cases prove EXCLUSION, never SUBSTITUTION. Proving that a 2016 query returns the 2016 wording needs superseded versions in legal_versions, which the fixture does not carry.",
+  "cases": [
+    {
+      "id": "tmp-001",
+      "category": "temporal",
+      "query": "abandon de poste mise en demeure et présomption de démission",
+      "as_of": "2020-06-01",
+      "forbidden": ["L1237-1-1"],
+      "note": "L1237-1-1 entered into force on 23/12/2022. For 2020 facts the presumption of resignation simply did not exist, and returning it would be advising on law that had not been voted."
+    },
+    {
+      "id": "tmp-002",
+      "category": "temporal",
+      "query": "abandon de poste mise en demeure et présomption de démission",
+      "as_of": "2024-06-01",
+      "gold": [{"article": "L1237-1-1", "grade": 2}, {"article": "L1237-1", "grade": 1}],
+      "note": "The positive half of the tmp-001 pair, same query verbatim. A system that scores well on tmp-001 by retrieving nothing at all fails here."
+    },
+    {
+      "id": "tmp-003",
+      "category": "temporal",
+      "query": "télétravail définition et obligations de l'employeur envers le télétravailleur",
+      "as_of": "2015-01-01",
+      "forbidden": ["L1222-9", "L1222-10", "L1222-11"],
+      "note": "The whole télétravail block dates from the 2017 ordonnances and later. At 2015 the corpus has nothing to say, and must say nothing."
+    },
+    {
+      "id": "tmp-004",
+      "category": "temporal",
+      "query": "télétravail définition et obligations de l'employeur envers le télétravailleur",
+      "as_of": "2026-08-01",
+      "gold": [{"article": "L1222-9", "grade": 2}, {"article": "L1222-10", "grade": 2}, {"article": "L1222-11", "grade": 1}],
+      "note": "Positive half of the tmp-003 pair, and identical to dt-014 apart from the explicit as-of date — so it also checks that passing an as-of date does not perturb a current-law query."
+    },
+    {
+      "id": "tmp-005",
+      "category": "temporal",
+      "query": "quelles informations écrites l'employeur doit-il remettre au salarié sur sa relation de travail",
+      "as_of": "2019-06-01",
+      "forbidden": ["L1221-5-1"],
+      "note": "L1221-5-1 transposes the 2019 EU transparent-working-conditions directive and is in force from 11/03/2023. Negative half of the con-008 pair."
+    },
+    {
+      "id": "tmp-006",
+      "category": "temporal",
+      "query": "barème d'indemnité en cas de licenciement sans cause réelle et sérieuse",
+      "as_of": "2016-06-01",
+      "forbidden": ["L1235-3", "L1235-3-1", "L1471-1"],
+      "note": "The single most consequential temporal case in the set: the barème applies to dismissals notified from 24/09/2017. Advising a 2016 dismissal on it is not a ranking error, it is the wrong law."
+    },
+    {
+      "id": "tmp-007",
+      "category": "temporal",
+      "query": "définition du harcèlement sexuel propos à connotation sexiste",
+      "as_of": "2021-01-01",
+      "forbidden": ["L1153-1", "L1153-2", "L1152-2"],
+      "note": "The 'sexiste' wording was added on 31/03/2022. The query is phrased in the post-2022 vocabulary on purpose: the system must refuse it for 2021 facts rather than reward the lexical match."
+    },
+    {
+      "id": "tmp-008",
+      "category": "temporal",
+      "query": "prescription de l'action portant sur l'exécution du contrat de travail",
+      "as_of": "2018-01-01",
+      "forbidden": ["L1471-1"],
+      "note": "A three-month boundary test: the corpus version of L1471-1 starts 01/04/2018. Chosen deliberately close to the boundary, because an off-by-one in the half-open interval only shows up near the edge."
+    },
+    {
+      "id": "tmp-009",
+      "category": "temporal",
+      "query": "prescription de l'action portant sur l'exécution du contrat de travail",
+      "as_of": "2019-01-01",
+      "gold": [{"article": "L1471-1", "grade": 2}, {"article": "L3245-1", "grade": 1}],
+      "note": "Positive half of tmp-008, nine months after the boundary. Same query, opposite expected outcome."
+    },
+    {
+      "id": "tmp-010",
+      "category": "temporal",
+      "query": "rupture du contrat pendant le congé supplémentaire de naissance",
+      "as_of": "2026-08-01",
+      "gold": [{"article": "L1225-4-5", "grade": 2}, {"article": "L1225-6", "grade": 1}],
+      "note": "The most recent article in the corpus (in force 31/12/2025). It checks the other end of the interval: a very new article must be reachable, not filtered out by a stale default as-of."
+    }
+  ]
+}

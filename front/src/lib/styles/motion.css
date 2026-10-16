@@ -1,0 +1,191 @@
+/* App-owned motion layer. The vendored primitives expose stable data-slot hooks. */
+:root {
+  --motion-fast: 140ms;
+  --motion-state: 240ms;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@supports (animation-timing-function: linear(0, 1)) {
+  :root {
+    --motion-spring: linear(0, 0.14 5%, 0.5 13%, 0.82 23%, 0.98 34%, 1.025 45%, 1.012 62%, 1);
+  }
+}
+
+[data-reveal-pending] { opacity: 0; }
+[data-reveal-pending]:focus-within { opacity: 1; }
+
+/* Capture the rounded/clipping frame itself. A named child is lifted out of
+   its ancestor's clip while the browser displays the transition snapshot. */
+:root[data-route-transition] .route-content { view-transition-name: route-content; }
+::view-transition-group(route-content) { animation-duration: 240ms; }
+::view-transition-old(route-content) { animation: motion-fade-out 100ms var(--motion-ease) both; }
+::view-transition-new(route-content) { animation: motion-page-in 300ms var(--motion-spring) both; }
+::view-transition-group(root) { animation-duration: 0s; }
+/* Snapshot overlays must not swallow a second navigation or an in-flight click. */
+::view-transition { pointer-events: none; }
+
+@keyframes motion-fade-out { to { opacity: 0; } }
+@keyframes motion-page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes motion-content-in {
+  from { opacity: 0; translate: 0 4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes motion-check {
+  from { opacity: 0; scale: 0.7; }
+  to { opacity: 1; scale: 1; }
+}
+
+/* Color feedback also covers plain buttons and links in the example compositions. */
+:where(button, a, input, textarea, select) {
+  transition-property: color, background-color, border-color, box-shadow, opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--motion-ease);
+}
+:where(a, button):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+[data-slot="button"] {
+  transition-property: translate, scale, color, background-color, border-color, box-shadow, opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--motion-spring);
+}
+[data-slot="button"]:active:not(:disabled, [aria-disabled="true"]) {
+  translate: 0 0;
+  scale: 0.97;
+}
+[data-slot="button"]:is(:disabled, [aria-disabled="true"]) { translate: none; }
+
+:is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]) {
+  transition: border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-state) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
+}
+
+[data-slot="switch-thumb"] {
+  transition-property: translate, transform;
+  transition-duration: 320ms;
+  transition-timing-function: var(--motion-spring);
+}
+[data-slot="progress-indicator"] {
+  transition: transform 420ms var(--motion-spring);
+}
+[data-slot="checkbox"][data-state="checked"] > * {
+  animation: motion-check 240ms var(--motion-spring);
+}
+[data-slot="table-row"] {
+  transition: background-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
+}
+[data-slot="table-body"] > [data-slot="table-row"] {
+  animation: motion-content-in 220ms var(--motion-ease) both;
+}
+
+/* Keep text stationary while the active tab's surface moves behind it. */
+.motion-tabs-list {
+  position: relative;
+  isolation: isolate;
+  --motion-tab-radius: max(0px, calc(var(--radius-lg) - 3px));
+}
+.motion-tabs-list > [data-slot="tabs-trigger"] {
+  border-radius: var(--motion-tab-radius);
+}
+.motion-tab-indicator {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: -1;
+  border-radius: var(--motion-tab-radius);
+  background: var(--primary);
+  box-shadow: var(--shadow-sm);
+  transform-origin: top left;
+  pointer-events: none;
+}
+[data-motion-tabs] > [data-slot="tabs-trigger"][data-state="active"] {
+  background-color: transparent;
+  box-shadow: none;
+}
+[data-slot="tabs-trigger"] {
+  transition: color var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
+}
+[data-slot="tabs-content"][data-state="active"] {
+  animation: motion-content-in 240ms var(--motion-spring);
+}
+
+[data-slot="sidebar-menu-button"] {
+  position: relative;
+  transition: color var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
+}
+[data-slot="sidebar-menu-button"]::before {
+  content: '';
+  position: absolute;
+  inset: 5px auto 5px 0;
+  width: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  opacity: 0;
+  scale: 1 0.4;
+  transition: opacity var(--motion-fast) var(--motion-ease), scale 300ms var(--motion-spring);
+}
+[data-slot="sidebar-menu-button"][data-active="true"]::before { opacity: 1; scale: 1; }
+[data-slot="sidebar-menu-button"] > svg {
+  transition: scale 280ms var(--motion-spring), color var(--motion-fast) var(--motion-ease);
+}
+[data-slot="sidebar-menu-button"][data-active="true"] > svg { scale: 1.08; }
+[data-collapsible="icon"] [data-slot="sidebar-menu-button"]::before { opacity: 0; }
+
+/* Floating layers already have Bits UI enter/exit classes; tune their timing. */
+:is([data-slot="dialog-content"], [data-slot="alert-dialog-content"], [data-slot="popover-content"], [data-slot="select-content"], [data-slot="tooltip-content"]) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--motion-spring);
+}
+:is([data-slot="dialog-content"], [data-slot="alert-dialog-content"], [data-slot="popover-content"], [data-slot="select-content"], [data-slot="tooltip-content"])[data-state="closed"] {
+  animation-duration: 120ms;
+  animation-timing-function: var(--motion-ease);
+}
+
+.motion-card {
+  transition: translate 320ms var(--motion-spring), border-color 180ms var(--motion-ease),
+    background-color 180ms var(--motion-ease), box-shadow 240ms var(--motion-ease);
+}
+.motion-link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color var(--motion-fast) var(--motion-ease), text-decoration-color var(--motion-fast) var(--motion-ease);
+}
+.motion-link:hover { text-decoration-color: currentColor; }
+
+@media (hover: hover) and (pointer: fine) {
+  [data-slot="button"]:hover:not(:disabled, [aria-disabled="true"]) { translate: 0 -1px; }
+  [data-slot="button"]:active:not(:disabled, [aria-disabled="true"]) { translate: 0 0; }
+  .motion-card:hover {
+    translate: 0 -3px;
+    border-color: color-mix(in oklab, var(--primary) 24%, var(--border));
+    box-shadow: var(--shadow-lift);
+  }
+  [data-slot="sidebar-menu-button"]:hover > svg { scale: 1.08; }
+}
+
+/* Includes existing utility/vendor CSS animations, without overriding resting
+   transforms (dialog centering, slider thumbs and selected switches need them). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal-pending] { opacity: 1; }
+  [data-slot="button"], .motion-card { translate: none !important; scale: 1 !important; }
+  [data-slot="sidebar-menu-button"] > svg { scale: 1 !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

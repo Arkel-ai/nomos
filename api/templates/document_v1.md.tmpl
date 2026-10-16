@@ -1,0 +1,36 @@
+{{/*
+Drafted act / note de synthèse — template version document_v1.
+
+Same contract as bordereau_v1: the blocks come from the drafting step, their
+STYLE has been checked against the closed allowlist in services/render.go and
+their TEXT has been escaped, so nothing the model wrote reaches pandoc as
+markup. A block only reaches this template once every citation it carries has
+resolved (services/citations.go, ResolveOrRefuse).
+*/ -}}
+{{ if .DraftNotice -}}
+::: {custom-style="Mention"}
+{{ .DraftNotice }}
+:::
+
+{{ end -}}
+{{ range .Blocks -}}
+::: {custom-style="{{ .Style }}"}
+{{ .Text }}
+:::
+
+{{ end -}}
+{{ if .Sources -}}
+::: {custom-style="Titre2"}
+Sources citées
+:::
+
+{{ range .Sources -}}
+::: {custom-style="Citation"}
+{{ . }}
+:::
+
+{{ end -}}
+{{ end -}}
+::: {custom-style="PiedDePage"}
+{{ .Attribution }}
+:::

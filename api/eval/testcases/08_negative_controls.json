@@ -1,0 +1,83 @@
+{
+  "set": "negative_controls",
+  "note": "Queries the corpus CANNOT answer. A retrieval system always returns its top k, so the only way to catch 'confidently returns something' is to ask questions with no right answer and check that nothing crosses the relevance threshold.\n\nHalf of these are far out of domain (consumer law, tax, criminal) and half are NEAR-domain: employment-law questions whose articles are simply outside the ingested subset. The near ones are the hard and useful half — a system that abstains on blanquette de veau and confidently returns L1242-10 for a CDI période d'essai question has learned nothing.",
+  "cases": [
+    {
+      "id": "neg-001",
+      "category": "negative_control",
+      "query": "durée de la garantie légale de conformité pour un téléviseur acheté en ligne",
+      "note": "Code de la consommation. Far out of domain, shares only function words with the corpus."
+    },
+    {
+      "id": "neg-002",
+      "category": "negative_control",
+      "query": "conditions de renouvellement d'un bail commercial 3 6 9 et droit au renouvellement",
+      "note": "Commercial lease law. 'Renouvellement' and 'durée' appear all over the Code du travail, so this is a lexical trap rather than a pure out-of-domain query."
+    },
+    {
+      "id": "neg-003",
+      "category": "negative_control",
+      "query": "calcul des droits de succession entre frères et sœurs abattement applicable",
+      "note": "Tax and succession. Included because 'calcul', 'droits' and 'abattement' all have employment-law homonyms."
+    },
+    {
+      "id": "neg-004",
+      "category": "negative_control",
+      "query": "recette traditionnelle de la blanquette de veau à l'ancienne",
+      "note": "Pure junk. If anything crosses the threshold here, the threshold is wrong, not the corpus."
+    },
+    {
+      "id": "neg-005",
+      "category": "negative_control",
+      "query": "taux de TVA applicable aux travaux de rénovation énergétique d'un logement",
+      "note": "Tax. Out of domain, and phrased as a perfectly reasonable professional question — the failure mode is a system that treats fluent French legal phrasing as evidence of relevance."
+    },
+    {
+      "id": "neg-006",
+      "category": "negative_control",
+      "query": "procédure de divorce par consentement mutuel par acte d'avocat déposé chez le notaire",
+      "note": "Family law. Shares procedural vocabulary ('procédure', 'acte', 'consentement') with the prud'homal articles, which is exactly the trap."
+    },
+    {
+      "id": "neg-007",
+      "category": "negative_control",
+      "query": "sanctions encourues pour un excès de vitesse supérieur à 50 km/h",
+      "note": "Criminal / road traffic. 'Sanction' is one of the highest-frequency words in the disciplinary chapter, so the lexical arm has real bait here."
+    },
+    {
+      "id": "neg-008",
+      "category": "negative_control",
+      "query": "durée de la période d'essai d'un CDI et conditions de son renouvellement",
+      "near_miss": ["L1242-10"],
+      "note": "NEAR-DOMAIN, and the most important negative control in the set. The CDI période d'essai lives at L1221-19 to L1221-26, which the fixture corpus does not contain; the CDD one (L1242-10) does. The correct answer is 'I do not have this'. Returning L1242-10 is the exact failure mode this whole file exists to catch."
+    },
+    {
+      "id": "neg-009",
+      "category": "negative_control",
+      "query": "contingent annuel d'heures supplémentaires et contrepartie obligatoire en repos",
+      "near_miss": ["L3123-8", "L3123-9", "L3121-11"],
+      "note": "NEAR-DOMAIN. Heures SUPPLÉMENTAIRES are at L3121-27 ff., outside the corpus; heures COMPLÉMENTAIRES (part-time, L3123-8) are inside and one letter away in ordinary usage."
+    },
+    {
+      "id": "neg-010",
+      "category": "negative_control",
+      "query": "durée du congé de maternité et indemnités journalières de sécurité sociale",
+      "near_miss": ["L1225-4", "L1225-5", "L1225-1"],
+      "note": "NEAR-DOMAIN. The corpus holds only the anti-dismissal protection of L1225-1 to L1225-6; the duration of the leave (L1225-17 ff.) and the social-security benefit are not here."
+    },
+    {
+      "id": "neg-011",
+      "category": "negative_control",
+      "query": "montant du SMIC horaire brut et modalités de revalorisation annuelle",
+      "near_miss": ["L3221-3", "L3251-3"],
+      "note": "NEAR-DOMAIN. The SMIC is at L3231-1 ff. The corpus's pay chapter (L3221, L3245, L3251) is adjacent and full of the word 'salaire'."
+    },
+    {
+      "id": "neg-012",
+      "category": "negative_control",
+      "query": "organisation des élections professionnelles du comité social et économique",
+      "near_miss": ["L1233-8", "L1233-9"],
+      "note": "NEAR-DOMAIN. The CSE is in Part 2 of the Code; the corpus mentions it only as a body to be consulted during an economic dismissal, which is enough to bait a similarity-only ranker."
+    }
+  ]
+}
