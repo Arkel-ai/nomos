@@ -22,7 +22,6 @@
   <img alt="Go 1.26" src="https://img.shields.io/badge/Go-1.26-0E1016?logo=go&logoColor=white">
   <img alt="SvelteKit 5" src="https://img.shields.io/badge/SvelteKit-5-0E1016?logo=svelte&logoColor=white">
   <img alt="Postgres + pgvector" src="https://img.shields.io/badge/Postgres-pgvector-0E1016?logo=postgresql&logoColor=white">
-  <img alt="Status: in development" src="https://img.shields.io/badge/status-in%20development-C27A0E">
 </p>
 
 <p align="center">
